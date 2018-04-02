@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Hotel extends Migration
+class UserDetails extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,15 @@ class Hotel extends Migration
      */
     public function up()
     {
-      Schema::create('hotel', function (Blueprint $table)
+      Schema::create('userdetails', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->string('hotelName');
-        $table->string('hotelLocation');
-        $table->string('hotelAddress');
-        $table->integer('hotelPhone');
-        $table->integer('hotelStar');
-        $table->integer('roomID');
+        $table->string('fName');
+        $table->string('lName');
+        $table->integer('userID');
 
-        $table->foreign('roomID')
-                  ->references('id')->on('room')
+        $table->foreign('userID')
+                  ->references('id')->on('useraccount')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
       });
@@ -37,6 +34,6 @@ class Hotel extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists('hotel');
+      Schema::dropIfExists('userdetails');
     }
 }

@@ -16,9 +16,26 @@ class Booking extends Migration
       Schema::create('booking', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->string('hotelName');
-        $table->string('location');
-        $table->integer('lengthOfStay');
+        $table->integer('noOfPeople');
+        $table->dateTime('checkIn');
+        $table->dateTime('checkOut');
+        $table->integer('roomQty');
+        $table->integer('hotelID');
+        $table->integer('userID');
+        $table->integer('roomID');
+
+        $table->foreign('hotelID')
+                  ->references('id')->on('hotel')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+        $table->foreign('userID')
+                  ->references('id')->on('useraccount')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+        $table->foreign('roomID')
+                  ->references('id')->on('room')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
       });
     }
 
