@@ -13,6 +13,9 @@ class HotelModel extends Model
       'hotelPhone', 'hotelStar', 'roomID'];
     protected $guarded = [];
 
-    public function
+    public function room()
+    {
+      return $this->belongsTo('App\Models\RoomTypeModel');
+    }
 
 }
