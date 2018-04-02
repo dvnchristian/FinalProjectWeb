@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\RoomTypeModel;
+
+class RoomTypeController extends Controller
+{
+  public function __construct(RoomTypeModel $room)
+  {
+    $this -> room = $room;
+  }
+
+  public function registerRoom(Request $request)
+  {
+
+    $room = [
+      "roomID" => $request->roomID,
+      "roomType"  => $request->roomType
+      "bedType"  => $request->bedType,
+      "roomPrice"  => $request->roomPrice,
+
+    ];
+
+
+    $room = $this->room->create($room);
+
+    return response([
+             'msg'=>'success',
+         ],200);
+  }
+
+  public function allRoom()
+  {
+    $room = $this->room->all();
+
+    return $room;
+
+  }
+
+  public function findRoom($roomID)
+  {
+    $room = $this->room->find($roomID);
+
+
+    return $room;
+  }
+
+  public function destroyRoom($roomID)
+  {
+    $room = $this->room->find($roomID)->delete();
+
+    return response([
+         'msg'=>'success',
+     ],200);
+  }
+
+  public function updateviewRoom(Request $request, $room)
+  {
+
+    $room= $this->room->find($roomID);
+
+    $room->roomID = $request->roomID;
+    $room->roomType = $request->roomType;
+    $room->bedType = $request->bedType;
+    $room->roomPrice = $request->roomPrice;
+
+
+    $room = $room->save();
+
+    return response([
+         'msg'=>'success',
+     ],200);
+  }
+
+
+
+
+
+}
