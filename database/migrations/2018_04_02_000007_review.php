@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserDetails extends Migration
+class Review extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class UserDetails extends Migration
      */
     public function up()
     {
-      Schema::create('userdetails', function (Blueprint $table)
+      Schema::create('review', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->string('fName');
-        $table->string('lName');
-        $table->integer('userID');
+        $table->integer('rating');
+        $table->string('comment');
+        $table->integer('bookingID')->unsigned();
 
-        $table->foreign('userID')
-                  ->references('id')->on('useraccount')
+        $table->foreign('bookingID')
+                  ->references('id')->on('booking')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
       });
@@ -34,6 +34,6 @@ class UserDetails extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists('userdetails');
+      Schema::dropIfExists('review');
     }
 }

@@ -15,12 +15,12 @@ class RoomTypeController extends Controller
   public function registerRoom(Request $request)
   {
 
-    $room = [
+    $room =
+    [
       "roomID" => $request->roomID,
       "roomType"  => $request->roomType
       "bedType"  => $request->bedType,
       "roomPrice"  => $request->roomPrice,
-
     ];
 
 

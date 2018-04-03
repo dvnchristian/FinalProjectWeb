@@ -15,7 +15,8 @@ class UserAccountController extends Controller
   public function register(Request $request)
   {
 
-    $user = [
+    $user =
+    [
       "id" => $request->id,
       "email"  => $request->email,
       "username"  => $request->username,

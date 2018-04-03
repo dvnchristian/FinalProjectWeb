@@ -20,9 +20,9 @@ class Booking extends Migration
         $table->dateTime('checkIn');
         $table->dateTime('checkOut');
         $table->integer('roomQty');
-        $table->integer('hotelID');
-        $table->integer('userID');
-        $table->integer('roomID');
+        $table->integer('hotelID')->unsigned();
+        $table->integer('userID')->unsigned();
+        $table->integer('roomID')->unsigned();
 
         $table->foreign('hotelID')
                   ->references('id')->on('hotel')

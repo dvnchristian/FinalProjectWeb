@@ -16,6 +16,7 @@ class HotelController extends Controller
   {
 
     $hotel =
+    [
       "hotelID" => $request->hotelID,
       "hotelName"  => $request->hotelName,
       "hotelLocation" =>$request->hotelLocation,
@@ -28,9 +29,10 @@ class HotelController extends Controller
 
     $hotel = $this->hotel->create($hotelID);
 
-    return response([
+    return response
+    ([
              'msg'=>'success',
-         ],200);
+    ],200);
   }
 
   public function allHotel()

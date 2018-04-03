@@ -15,7 +15,8 @@ class UserDetailsController extends Controller
   public function registerUserDetails(Request $request)
   {
 
-    $userd = [
+    $userd =
+    [
       "userDetailsID" => $request->id
       "fName"  => $request->fName,
       "lName"  => $request->lName,

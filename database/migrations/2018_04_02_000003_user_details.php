@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Payment extends Migration
+class UserDetails extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class Payment extends Migration
      */
     public function up()
     {
-      Schema::create('payment', function (Blueprint $table)
+      Schema::create('userdetails', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->integer('userID');
-        $table->integer('bookingID');
+        $table->string('fName');
+        $table->string('lName');
+        $table->integer('userID')->unsigned();
 
-        $table->foreign('bookingID')
-                  ->references('id')->on('booking')
+        $table->foreign('userID')
+                  ->references('id')->on('useraccount')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
       });
@@ -33,6 +34,6 @@ class Payment extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists('payment');
+      Schema::dropIfExists('userdetails');
     }
 }

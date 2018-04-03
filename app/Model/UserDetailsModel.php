@@ -11,5 +11,5 @@ class UserDetails extends Model
     protected $fillable = ['fName', 'lName', 'user_id'];
     protected $guarded = [];
 
-
+    
 }

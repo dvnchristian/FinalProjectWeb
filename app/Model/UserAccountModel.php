@@ -12,5 +12,5 @@ class UserAccountModel extends Model
     protected $guarded = [];
 
 
-
+    
 }

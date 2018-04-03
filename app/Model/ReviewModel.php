@@ -10,6 +10,6 @@ class ReviewModel extends Model
     protected $table = "review";
     protected $fillable = ['rating', 'comment'];
     protected $guarded = [];
-
+    
 
 }

@@ -21,12 +21,12 @@ class Hotel extends Migration
         $table->string('hotelAddress');
         $table->integer('hotelPhone');
         $table->integer('hotelStar');
-        $table->integer('roomID');
+        $table->unsignedinteger('roomID');
 
         $table->foreign('roomID')
-                  ->references('id')->on('room')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
+                   ->references('id')->on('room')
+                   ->onDelete('cascade')
+                   ->onUpdate('cascade');
       });
     }
 
