@@ -19,7 +19,9 @@ class UserAccount extends Migration
         $table->string('email');
         $table->string('username');
         $table->string('password');
-        $table->integer('phone');
+        $table->string('phone');
+        $table->string('fName');
+        $table->string('lName');
       });
     }
 

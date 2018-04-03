@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\HotelModel;
+use App\Model\HotelModel;
+use Exception;
 
 class HotelController extends Controller
 {
-  public function __construct(HotelModel $item)
+
+    protected $hotel;
+
+  public function __construct(HotelModel $hotel)
   {
-    $this -> hotel = $hotel;
+    $this->hotel = $hotel;
   }
 
   public function registerHotel(Request $request)
@@ -17,17 +21,16 @@ class HotelController extends Controller
 
     $hotel =
     [
-      "hotelID" => $request->hotelID,
       "hotelName"  => $request->hotelName,
       "hotelLocation" =>$request->hotelLocation,
       "hotelAddress"  => $request->hotelAddress,
       "hotelPhone"  => $request->hotelPhone,
-      "hotelStar" =>$request->hotelStar,
-      "roomID" =>$request->roomID
+      "hotelStar" =>$request->hotelStar
+
     ];
 
 
-    $hotel = $this->hotel->create($hotelID);
+    $hotel = $this->hotel->create($hotel);
 
     return response
     ([
@@ -65,12 +68,13 @@ class HotelController extends Controller
 
     $hotel = $this->hotel->find($hotelID);
 
-    $hotel->hotelID = $request->hotelID;
+
     $hotel->hotelName = $request->hotelName;
-    $hotel->hotelLocation= $request ->hotelLocation,
+    $hotel->hotelLocation= $request ->hotelLocation;
     $hotel->hotelAddress = $request->hotelAddress;
     $hotel->hotelPhone = $request->hotelPhone;
-    $hotel->roomID = $request->roomID;
+    $hotel->hotelStar = $request->hotelStar;
+
 
     $hotel = $hotel->save();
 

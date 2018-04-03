@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RoomTypeModel;
+use App\Model\RoomTypeModel;
+use Exception;
 
 class RoomTypeController extends Controller
 {
+
+  protected $room;
+
   public function __construct(RoomTypeModel $room)
   {
-    $this -> room = $room;
+    $this ->room = $room;
   }
 
   public function registerRoom(Request $request)
@@ -17,10 +21,10 @@ class RoomTypeController extends Controller
 
     $room =
     [
-      "roomID" => $request->roomID,
-      "roomType"  => $request->roomType
+
+      "roomType"  => $request->roomType,
       "bedType"  => $request->bedType,
-      "roomPrice"  => $request->roomPrice,
+      "roomPrice"  => $request->roomPrice
     ];
 
 
@@ -61,7 +65,6 @@ class RoomTypeController extends Controller
 
     $room= $this->room->find($roomID);
 
-    $room->roomID = $request->roomID;
     $room->roomType = $request->roomType;
     $room->bedType = $request->bedType;
     $room->roomPrice = $request->roomPrice;

@@ -19,14 +19,9 @@ class Hotel extends Migration
         $table->string('hotelName');
         $table->string('hotelLocation');
         $table->string('hotelAddress');
-        $table->integer('hotelPhone');
+        $table->string('hotelPhone');
         $table->integer('hotelStar');
-        $table->unsignedinteger('roomID');
 
-        $table->foreign('roomID')
-                   ->references('id')->on('room')
-                   ->onDelete('cascade')
-                   ->onUpdate('cascade');
       });
     }
 
