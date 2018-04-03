@@ -8,23 +8,8 @@ class BookingModel extends Model
 {
     public $timestamps = false;
     protected $table = "booking";
-    protected $fillable = [
-      'noOfPeople', 'checkInDate', 'checkOutDate','roomQty',
-      'hotelID', 'userID', 'roomID'];
+    protected $fillable = ['noOfPeople', 'checkInDate', 'checkOutDate','roomQty'];
     protected $guarded = [];
 
-    public function HotelModel()
-    {
-      return $this->belongsTo('App\Models\HotelModel');
-    }
 
-    public function UserAccountModelModel()
-    {
-      return $this->belongsTo('App\Models\UserAccountModel');
-    }
-
-    public function RoomTypeModel()
-    {
-      return $this->belongsTo('App\Models\RoomTypeModel');
-    }
 }
