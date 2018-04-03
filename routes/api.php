@@ -40,3 +40,17 @@ Route::get('/room', "RoomTypeController@allRoom");
 Route::get('/room/{roomID}', "RoomTypeController@findRoom");
 Route::delete('/room/{roomID}', "RoomTypeController@destroyRoom");
 Route::put('/room/{roomID}', "RoomTypeController@updateviewRoom");
+
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
+Route::post('recover', 'AuthController@recover');
+Route::group(['middleware' => ['jwt.auth']], function() {
+    Route::get('logout', 'AuthController@logout');
+    Route::get('test', function(){
+        return response()->json(['foo'=>'bar']);
+    });
+});
+
+Route::get('user/verify/{verification_code}', 'AuthController@verifyUser');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
+Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('password.reset');

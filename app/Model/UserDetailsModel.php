@@ -10,6 +10,4 @@ class UserDetails extends Model
     protected $table = "userDetails";
     protected $fillable = ['fName', 'lName', 'user_id'];
     protected $guarded = [];
-
-    
 }

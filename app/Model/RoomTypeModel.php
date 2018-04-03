@@ -10,6 +10,4 @@ class RoomTypeModel extends Model
     protected $table = "roomtype";
     protected $fillable = ['roomType', 'bedType', 'roomPrice'];
     protected $guarded = [];
-
-    
 }
