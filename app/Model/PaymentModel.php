@@ -8,8 +8,16 @@ class PaymentModel extends Model
 {
     public $timestamps = false;
     protected $table = "payment";
-    protected $fillable = [''];
+    protected $fillable = ['userID', 'bookingID'];
     protected $guarded = [];
 
+    public function UserAccountModel()
+    {
+      return $this->belongsTo('App\Models\UserAccountModel');
+    }
 
+    public function BookingModel()
+    {
+      return $this->belongsTo('App\Models\BookingModel');
+    }
 }
