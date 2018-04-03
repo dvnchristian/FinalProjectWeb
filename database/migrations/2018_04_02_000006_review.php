@@ -18,7 +18,7 @@ class Review extends Migration
         $table->increments('id');
         $table->integer('rating');
         $table->string('comment');
-        $table->integer('bookingID')->unsigned();
+        $table->unsignedinteger('bookingID')->default(1);
 
         $table->foreign('bookingID')
                   ->references('id')->on('booking')

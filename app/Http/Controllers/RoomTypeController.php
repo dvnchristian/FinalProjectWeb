@@ -9,7 +9,7 @@ use Exception;
 class RoomTypeController extends Controller
 {
 
-  protected $hotel;
+  protected $room;
 
   public function __construct(RoomTypeModel $room)
   {

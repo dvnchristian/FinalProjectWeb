@@ -15,7 +15,7 @@ class Hotel extends Migration
     {
       Schema::create('hotel', function (Blueprint $table)
       {
-        $table->increments('hotelID');
+        $table->increments('id');
         $table->string('hotelName');
         $table->string('hotelLocation');
         $table->string('hotelAddress');

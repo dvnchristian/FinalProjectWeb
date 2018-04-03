@@ -34,3 +34,15 @@ Route::get('/room', "RoomTypeController@allRoom");
 Route::get('/room/{roomID}', "RoomTypeController@findRoom");
 Route::delete('/room/{roomID}', "RoomTypeController@destroyRoom");
 Route::put('/room/{roomID}', "RoomTypeController@updateviewRoom");
+
+Route::post('/booking', "BookingController@registerBooking");
+Route::get('/booking', "BookingController@allBooking");
+Route::get('/booking/{bookingID}', "BookingController@findBooking");
+Route::delete('/booking/{bookingID}', "BookingController@destroyBooking");
+Route::put('/booking/{bookingID}', "BookingController@updateviewBooking");
+
+Route::post('/review', "ReviewController@registerReview");
+Route::get('/review', "ReviewController@allReview");
+Route::get('/review/{reviewID}', "ReviewController@findReview");
+Route::delete('/review/{reviewID}', "ReviewController@destroyReview");
+Route::put('/review/{reviewID}', "ReviewController@updateviewReview");

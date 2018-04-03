@@ -18,7 +18,7 @@ class Room extends Migration
         $table->increments('id');
         $table->enum('roomType', ['deluxe', 'superior', 'premier', 'executive']);
         $table->enum('bedType', ['single', 'twin', 'double']);
-        $table->integer('price');
+        $table->integer('roomPrice');
       });
     }
 
