@@ -16,7 +16,7 @@ class UserAccountController extends Controller
   {
 
     $user = [
-      "id" => $request->id,
+      "userAccountID" => $request->userAccountID,
       "email"  => $request->email,
       "username"  => $request->username,
       "password"  => md5($request->password),
@@ -33,7 +33,7 @@ class UserAccountController extends Controller
 
   public function all()
   {
-  try{
+  try{111111111111111
     $user=$this->user->with('Items')->get();
 
     return $user;
@@ -44,27 +44,27 @@ class UserAccountController extends Controller
 
   }
 
-  public function find($id)
+  public function find($userAccountID)
   {
-    $user = $this->user->find($id);
+    $user = $this->user->find($userAccountID);
 
 
     return $user;
   }
 
-  public function destroy($id)
+  public function destroy($userAccountID)
   {
-    $user = $this->user->find($id)->delete();
+    $user = $this->user->find($userAccountID)->delete();
 
     return response([
          'msg'=>'success',
      ],200);
   }
 
-  public function updateview(Request $request, $id)
+  public function updateview(Request $request, $userAccountID)
   {
 
-    $user = $this->user->find($id);
+    $user = $this->user->find($userAccountID);
 
     $user->email = $request->email;
     $user->username = $request->name;

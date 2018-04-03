@@ -16,6 +16,7 @@ class HotelController extends Controller
   {
 
     $hotel =
+    [
       "hotelID" => $request->hotelID,
       "hotelName"  => $request->hotelName,
       "hotelLocation" =>$request->hotelLocation,
