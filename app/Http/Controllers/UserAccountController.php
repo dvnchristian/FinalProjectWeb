@@ -1,26 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Models\UserAccountModel;
+
+use App\Model\UserAccountModel;
+use Exception;
 
 class UserAccountController extends Controller
 {
+  protected $user;
+
   public function __construct(UserAccountModel $user)
   {
-    $this -> userAccount = $user;
+    $this ->user = $user;
   }
 
   public function register(Request $request)
   {
 
     $user = [
-      "userAccountID" => $request->userAccountID,
       "email"  => $request->email,
       "username"  => $request->username,
       "password"  => md5($request->password),
       "phone" => $request->phone,
+      "fName" => $request->fName,
+      "lName" => $request->lName
       ];
 
 
@@ -33,8 +37,8 @@ class UserAccountController extends Controller
 
   public function all()
   {
-  try{111111111111111
-    $user=$this->user->with('Items')->get();
+  try{
+    $user=$this->user->get();
 
     return $user;
   }
@@ -70,6 +74,8 @@ class UserAccountController extends Controller
     $user->username = $request->name;
     $user->password = md5($request->password);
     $user->phone = $request->phone;
+    $user->fName = $request->fName;
+    $user->lName = $request->lName;
     $user = $user->save();
 
     return response([

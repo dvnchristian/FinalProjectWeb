@@ -19,15 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/user', "UserAccountController@register");
 Route::get('/user', "UserAccountController@all");
-Route::get('/user/{id}', "UserAccountController@find");
-Route::delete('/user/{id}', "UserAccountController@destroy");
-Route::put('/user/{id}', "UserAccountController@updateview");
-
-Route::post('/userd', "UserDetailsController@registerUserDetails");
-Route::get('/userd', "UserDetailsController@allUserDetails");
-Route::get('/userd/{userDetailsID}', "UserDetailsController@findUserDetails");
-Route::delete('/userd/{userDetailsID}', "UserDetailsController@destroyUserDetails");
-Route::put('/userd/{userDetailsID}', "UserDetailsController@updateviewUserDetails");
+Route::get('/user/{userAccountID}', "UserAccountController@find");
+Route::delete('/user/{userAccountID}', "UserAccountController@destroy");
+Route::put('/user/{userAccountID}', "UserAccountController@updateview");
 
 Route::post('/hotel', "hotelController@registerHotel");
 Route::get('/hotel', "hotelController@allHotel");

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,12 +10,7 @@ class HotelModel extends Model
     protected $table = 'hotel';
     protected $fillable = [
       'hotelName', 'hotelLocation', 'hotelAddress',
-      'hotelPhone', 'hotelStar', 'roomID'];
+      'hotelPhone', 'hotelStar'];
     protected $guarded = [];
-
-    public function room()
-    {
-      return $this->belongsTo('App\Models\RoomTypeModel');
-    }
 
 }
