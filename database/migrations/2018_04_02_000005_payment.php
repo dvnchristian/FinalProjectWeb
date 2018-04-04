@@ -16,6 +16,8 @@ class Payment extends Migration
       Schema::create('payment', function (Blueprint $table)
       {
         $table->increments('id');
+        $table->integer('ccNo');
+        $table->integer('ccCode');
         $table->integer('userID')->unsigned();
         $table->integer('bookingID')->unsigned();
 

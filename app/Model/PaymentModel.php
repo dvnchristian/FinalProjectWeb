@@ -10,14 +10,4 @@ class PaymentModel extends Model
     protected $table = "payment";
     protected $fillable = ['userID', 'bookingID'];
     protected $guarded = [];
-
-    // public function UserAccountModel()
-    // {
-    //   return $this->belongsTo('App\Models\UserAccountModel');
-    // }
-    //
-    // public function BookingModel()
-    // {
-    //   return $this->belongsTo('App\Models\BookingModel');
-    // }
 }

@@ -12,6 +12,20 @@ class UserAccountModel extends Authenticatable
     protected $fillable =
     [
       'email', 'username', 'password',
-      'phone'];
+      'phone', 'fName', 'lName'];
     protected $guarded = [];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
