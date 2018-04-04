@@ -1,19 +1,24 @@
 <?php
 
-namespace App\Models;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User  as Authenticatable;
 
 class UserAccountModel extends Authenticatable
 {
     public $timestamps = false;
-    protected $table = "user";
+    protected $table = "useraccount";
     protected $fillable =
     [
-      'email', 'username', 'password',
-      'phone', 'fName', 'lName'];
+      'name', 'email', 'password','username','phone'
+    ];
     protected $guarded = [];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     public function getJWTIdentifier()
     {
