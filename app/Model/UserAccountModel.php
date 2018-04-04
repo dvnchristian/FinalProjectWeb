@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Foundation\Auth\User  as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class UserAccountModel extends Authenticatable
 {
@@ -12,7 +12,7 @@ class UserAccountModel extends Authenticatable
     protected $table = "useraccount";
     protected $fillable =
     [
-      'name', 'email', 'password','username','phone'
+      'name', 'email', 'password','username','phone', 'is_verified'
     ];
     protected $guarded = [];
 

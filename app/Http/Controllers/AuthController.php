@@ -24,19 +24,21 @@ class AuthController extends Controller
         $rules = [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:useraccount',
-            'username' => 'required|unique:useraccount',
-            'password' => 'required|max:16',
-            'phone' => 'max:12'
+            // 'username' => 'required|unique:useraccount',
+            // 'password' => 'required|max:16',
+            // 'phone' => 'max:12'
         ];
-        error_log($request->name);
         $validator = Validator::make($credentials, $rules);
         if($validator->fails()) {
             return response()->json(['success'=> false, 'error'=> $validator->messages()]);
         }
+        $name = $request->name;
+        $email = $request->email;
+        // $password = $request->password;
 
         $user = [
-          "name"=> $request->$name,
-          "email"=> $request->$email,
+          "name"=> $name,
+          "email"=> $email,
           "password"=> Hash::make($request->password),
           "username" => $request->username,
           "phone" => $request->phone
@@ -62,7 +64,7 @@ class AuthController extends Controller
      */
     public function verifyUser($verification_code)
     {
-        $check = DB::table('user_verifications')->where('token',$verification_code)->first();
+        $check = DB::table('user_verifications')->where('token', $verification_code)->first();
         if(!is_null($check)){
             $user = UserAccountModel::find($check->user_id);
             if($user->is_verified == 1){
@@ -73,7 +75,8 @@ class AuthController extends Controller
             }
             $user->is_verified = 1;
             $user->save();
-            DB::table('user_verifications')->where('token',$verification_code)->delete();
+            DB::table('user_verifications')->where('token', $verification_code);
+            // DB::table('user_verifications')->where('token', $verification_code)->delete();
             return response()->json([
                 'success'=> true,
                 'message'=> 'You have successfully verified your email address.'
