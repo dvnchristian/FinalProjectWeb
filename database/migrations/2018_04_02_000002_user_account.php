@@ -21,6 +21,7 @@ class UserAccount extends Migration
         $table->string('username');
         $table->string('password');
         $table->string('phone');
+        $table->rememberToken();
         // $table->string('fName');
         // $table->string('lName');
       });

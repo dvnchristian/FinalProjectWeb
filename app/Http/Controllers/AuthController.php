@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator, DB, Hash, Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Message;
+use Illuminate\Notifications\Notifiable;
 
 class AuthController extends Controller
 {
@@ -145,7 +146,7 @@ class AuthController extends Controller
      */
     public function recover(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = UserAccountModel::where('email', $request->email)->first();
         if (!$user) {
             $error_message = "Your email address was not found.";
             return response()->json(['success' => false, 'error' => ['email'=> $error_message]], 401);

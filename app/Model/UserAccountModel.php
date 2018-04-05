@@ -5,9 +5,11 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class UserAccountModel extends Authenticatable
 {
+    use Notifiable;
     public $timestamps = false;
     protected $table = "useraccount";
     protected $fillable =
