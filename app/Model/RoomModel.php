@@ -8,6 +8,6 @@ class RoomModel extends Model
 {
     public $timestamps = false;
     protected $table = "room";
-    protected $fillable = ['roomType', 'bedType', 'roomPrice', 'hotelID'];
+    protected $fillable = ['roomType', 'bedType', 'roomPrice', 'qty','hotelID'];
     protected $guarded = [];
 }

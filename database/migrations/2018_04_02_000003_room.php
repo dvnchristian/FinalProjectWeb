@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Review extends Migration
+class Room extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class Review extends Migration
      */
     public function up()
     {
-      Schema::create('review', function (Blueprint $table)
+      Schema::create('room', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->integer('rating');
-        $table->string('comment');
+        $table->enum('roomType', ['deluxe', 'superior', 'premier', 'executive']);
+        $table->enum('bedType', ['single', 'twin', 'double']);
+        $table->integer('roomPrice');
+        $table->integer('qty');
         $table->unsignedinteger('hotelID')->default(1);
 
         $table->foreign('hotelID')
@@ -34,6 +36,6 @@ class Review extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists('review');
+      Schema::dropIfExists('room');
     }
 }
