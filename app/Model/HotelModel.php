@@ -13,12 +13,9 @@ class HotelModel extends Model
       'hotelPhone', 'hotelStar'];
     protected $guarded = [];
 
-<<<<<<< HEAD
     // public function room()
     // {
     //   return $this->belongsTo('App\Models\RoomTypeModel');
     // }
 
-=======
->>>>>>> master
 }

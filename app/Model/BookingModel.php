@@ -8,10 +8,9 @@ class BookingModel extends Model
 {
     public $timestamps = false;
     protected $table = "booking";
-    protected $fillable = ['noOfPeople', 'checkIn', 'checkOut','roomQty','hotelID','userID','roomID'];
+    protected $fillable = ['noOfPeople', 'checkIn', 'checkOut','hotelID','userID','roomID'];
     protected $guarded = [];
 
-<<<<<<< HEAD
     // public function HotelModel()
     // {
     //   return $this->belongsTo('App\Models\HotelModel');
@@ -26,7 +25,6 @@ class BookingModel extends Model
     // {
     //   return $this->belongsTo('App\Models\RoomTypeModel');
     // }
-=======
     public function HotelModel()
     {
       return $this->belongsTo('App\Model\HotelModel');
@@ -41,5 +39,4 @@ class BookingModel extends Model
     {
       return $this->belongsTo('App\Model\RoomTypeModel');
     }
->>>>>>> master
 }

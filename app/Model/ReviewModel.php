@@ -8,11 +8,6 @@ class ReviewModel extends Model
 {
     public $timestamps = false;
     protected $table = "review";
-    protected $fillable = ['rating','comment', 'bookingID'];
+    protected $fillable = ['rating','comment', 'hotelID'];
     protected $guarded = [];
-<<<<<<< HEAD
-=======
-
-
->>>>>>> master
 }
