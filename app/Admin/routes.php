@@ -11,6 +11,6 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/home', 'HomeController@index');
-    $router->resource('/Hotel', HotelModelController::class);
-    $router->resource('/Room', RoomModelController::class);
+    $router->resource('/hotel', HotelModelController::class);
+    $router->resource('/room', RoomModelController::class);
 });
