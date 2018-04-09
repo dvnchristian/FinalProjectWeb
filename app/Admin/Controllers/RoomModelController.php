@@ -24,8 +24,8 @@ class RoomModelController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Room');
+            $content->description('Add, Edit & Delete Room');
 
             $content->body($this->grid());
         });
@@ -74,6 +74,7 @@ class RoomModelController extends Controller
         return Admin::grid(RoomModel::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->columns('roomType', 'bedType', 'roomPrice', 'hotelPhone', 'hotelStar');
 
             $grid->created_at();
             $grid->updated_at();

@@ -25,7 +25,7 @@ class HotelModelController extends Controller
         return Admin::content(function (Content $content) {
 
             $content->header('Hotel');
-            $content->description('description');
+            $content->description('Add, Edit & Delete Hotel');
 
             $content->body($this->grid());
         });
