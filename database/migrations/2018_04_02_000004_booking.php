@@ -20,7 +20,7 @@ class Booking extends Migration
         $table->dateTime('checkIn');
         $table->dateTime('checkOut');
         $table->string('comment');
-        $table->int('rating');
+        $table->integer('rating');
         $table->boolean('has_Paid');
 
         $table->unsignedinteger('hotelID')->default(1);

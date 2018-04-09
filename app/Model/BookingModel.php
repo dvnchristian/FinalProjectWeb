@@ -32,7 +32,7 @@ class BookingModel extends Model
       return $this->belongsTo('App\Model\HotelModel');
     }
 
-    public function UserAccountModelModel()
+    public function UserAccountModel()
     {
       return $this->belongsTo('App\Model\UserAccountModel');
     }
