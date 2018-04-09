@@ -21,7 +21,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $credentials = $request->only('name', 'email', 'username', 'password', 'phone');
+        $credentials = $request->only('name', 'email', 'password', 'phone', 'gender', 'city');
         $rules = [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:useraccount',
@@ -41,8 +41,9 @@ class AuthController extends Controller
           "name"=> $name,
           "email"=> $email,
           "password"=> Hash::make($request->password),
-          "username" => $request->username,
-          "phone" => $request->phone
+          "phone" => $request->phone,
+          "gender" => $request->gender,
+          "city" => $request->city,
         ];
         $user = $this->user->create($user);
         $verification_code = str_random(30); //Generate verification code

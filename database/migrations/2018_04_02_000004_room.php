@@ -19,6 +19,12 @@ class Room extends Migration
         $table->enum('roomType', ['deluxe', 'superior', 'premier', 'executive']);
         $table->enum('bedType', ['single', 'twin', 'double']);
         $table->integer('roomPrice');
+        $table->unsignedinteger('hotelID')->default(1);
+
+        $table->foreign('hotelID')
+                  ->references('id')->on('hotel')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
       });
     }
 

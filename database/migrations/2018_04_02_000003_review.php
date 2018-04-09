@@ -18,10 +18,10 @@ class Review extends Migration
         $table->increments('id');
         $table->integer('rating');
         $table->string('comment');
-        $table->unsignedinteger('bookingID')->default(1);
+        $table->unsignedinteger('hotelID')->default(1);
 
-        $table->foreign('bookingID')
-                  ->references('id')->on('booking')
+        $table->foreign('hotelID')
+                  ->references('id')->on('hotel')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
       });
