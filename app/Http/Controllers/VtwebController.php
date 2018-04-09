@@ -11,7 +11,7 @@ class VtwebController extends Controller
 {
     public function __construct()
     {
-        Veritrans::$serverKey = '<SB-Mid-server-hhYbRwMiTTj5EZ6kPvpuQnD8>';
+        Veritrans::$serverKey = 'SB-Mid-server-hhYbRwMiTTj5EZ6kPvpuQnD8';
 
         //set Veritrans::$isProduction  value to true for production mode
         Veritrans::$isProduction = false;
@@ -90,7 +90,7 @@ class VtwebController extends Controller
         try
         {
             $vtweb_url = $vt->vtweb_charge($transaction_data);
-            return redirect($vtweb_url);
+            return response(["url"=>$vtweb_url]);
         }
         catch (Exception $e)
         {

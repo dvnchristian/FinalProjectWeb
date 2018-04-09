@@ -22,3 +22,4 @@ Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('p
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/pay', 'VtwebController@vtweb');
