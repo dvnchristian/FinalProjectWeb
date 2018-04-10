@@ -21,6 +21,7 @@ class Hotel extends Migration
         $table->string('hotelAddress');
         $table->string('hotelPhone');
         $table->integer('hotelStar');
+        $table->string('hotelImage');
 
       });
     }

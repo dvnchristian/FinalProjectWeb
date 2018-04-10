@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Model\RoomModel;
+use App\Model\HotelModel;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class RoomModelController extends Controller
+class HotelController extends Controller
 {
     use ModelForm;
 
@@ -24,8 +24,8 @@ class RoomModelController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('Room');
-            $content->description('Add, Edit & Delete Room');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->grid());
         });
@@ -71,10 +71,10 @@ class RoomModelController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(RoomModel::class, function (Grid $grid) {
+        return Admin::grid(HotelModel::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->columns('roomType', 'bedType', 'roomPrice', 'qty');
+            $grid->columns('hotelName', 'hotelLocation', 'hotelAddress','hotelPhone', 'hotelStar','hotelImage');
 
             $grid->created_at();
             $grid->updated_at();
@@ -88,14 +88,15 @@ class RoomModelController extends Controller
      */
     protected function form()
     {
-        return Admin::form(RoomModel::class, function (Form $form) {
+        return Admin::form(HotelModel::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->text('roomType');
-            $form->text('bedType');
-            $form->text('roomPrice');
-            $form->text('qty');
-
+            $form->text('hotelName');
+            $form->text('hotelLocation');
+            $form->text('hotelAddress');
+            $form->text('hotelPhone');
+            $form->text('hotelStar');
+            $form->image('hotelImage')->move('image')->uniqueName();
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });
