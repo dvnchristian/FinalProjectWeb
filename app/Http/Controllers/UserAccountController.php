@@ -83,9 +83,4 @@ class UserAccountController extends Controller
          'msg'=>'success',
      ],200);
   }
-
-
-
-
-
 }

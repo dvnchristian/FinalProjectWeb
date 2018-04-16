@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\RoomTypeModel;
+use App\Model\RoomModel;
 use Exception;
 
-class RoomTypeController extends Controller
+class RoomController extends Controller
 {
 
   protected $room;
 
-  public function __construct(RoomTypeModel $room)
+  public function __construct(RoomModel $room)
   {
     $this ->room = $room;
   }
@@ -21,7 +21,6 @@ class RoomTypeController extends Controller
 
     $room =
     [
-
       "roomType"  => $request->roomType,
       "bedType"  => $request->bedType,
       "roomPrice"  => $request->roomPrice
@@ -47,7 +46,6 @@ class RoomTypeController extends Controller
   {
     $room = $this->room->find($roomID);
 
-
     return $room;
   }
 
@@ -60,6 +58,29 @@ class RoomTypeController extends Controller
      ],200);
   }
 
+  public function checkRoomStock($roomID, $qty)
+  {
+    $currStock = RoomModel::where('id', '=', $roomID) ->value('qty');
+
+    if($currStock < $qty)
+    {
+      return response([
+        'msg' => 'There is no enough room, current room quantity = '. $currStock
+      ]);
+    }
+    else
+    {
+      $currStock = $currStock - $qty;
+
+      RoomModel::where('id', '=', $roomID)
+      ->update([
+        'qty'=>$currStock
+      ]);
+
+      return response(['msg' => 'Booking Successful. Stock Left '.$currStock]);
+    }
+  }
+
   public function updateviewRoom(Request $request, $room)
   {
 
@@ -69,16 +90,10 @@ class RoomTypeController extends Controller
     $room->bedType = $request->bedType;
     $room->roomPrice = $request->roomPrice;
 
-
     $room = $room->save();
 
     return response([
          'msg'=>'success',
      ],200);
   }
-
-
-
-
-
 }

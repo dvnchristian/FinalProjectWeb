@@ -13,5 +13,5 @@ Route::group([
     $router->get('/home', 'HomeController@index');
     $router->resource('/hotel', HotelModelController::class);
     $router->resource('/room', RoomModelController::class);
-
+    $router->resource('/user', UserAccountModelController::class);
 });

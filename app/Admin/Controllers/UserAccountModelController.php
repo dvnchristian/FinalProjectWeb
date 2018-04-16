@@ -2,8 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Model\RoomModel;
-use App\Model\HotelModel;
+use App\Model\UserAccountModel;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -12,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class HotelModelController extends Controller
+class UserAccountModelController extends Controller
 {
     use ModelForm;
 
@@ -25,8 +24,8 @@ class HotelModelController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('Hotel');
-            $content->description('Add, Edit & Delete Hotel');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->grid());
         });
@@ -42,8 +41,8 @@ class HotelModelController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('Hotel');
-            $content->description('Edit Hotel');
+            $content->header('Users');
+            $content->description('Add, Edit & Delete Users');
 
             $content->body($this->form()->edit($id));
         });
@@ -58,8 +57,8 @@ class HotelModelController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('Hotel');
-            $content->description('Add Hotel');
+            $content->header('Users');
+            $content->description('Edit Users');
 
             $content->body($this->form());
         });
@@ -72,11 +71,11 @@ class HotelModelController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(HotelModel::class, function (Grid $grid) {
+        return Admin::grid(UserAccountModel::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->columns('hotelName', 'hotelLocation', 'hotelAddress',
-            'hotelPhone', 'hotelStar','hotelImage');
+            $grid->columns('name', 'email', 'password',
+            'phone', 'gender', 'city', 'is_verified');
 
             $grid->created_at();
             $grid->updated_at();
@@ -90,15 +89,15 @@ class HotelModelController extends Controller
      */
     protected function form()
     {
-        return Admin::form(HotelModel::class, function (Form $form)
-        {
+        return Admin::form(UserAccountModel::class, function (Form $form) {
+
             $form->display('id', 'ID');
-            $form->text('hotelName');
-            $form->text('hotelLocation');
-            $form->text('hotelAddress');
-            $form->text('hotelPhone');
-            $form->text('hotelStar');
-            $form->image('hotelImage')->move('image')->uniqueName();
+            $form->text('name');
+            $form->text('password');
+            $form->text('phone');
+            $form->text('gender');
+            $form->text('city');
+            $form->text('is_verified');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
