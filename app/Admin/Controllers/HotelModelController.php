@@ -25,8 +25,8 @@ class HotelModelController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Hotel');
+            $content->description('Add, Edit & Delete Hotel');
 
             $content->body($this->grid());
         });
@@ -42,8 +42,8 @@ class HotelModelController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Hotel');
+            $content->description('Add, Edit & Delete Hotel');
 
             $content->body($this->form()->edit($id));
         });
@@ -58,8 +58,8 @@ class HotelModelController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Hotel');
+            $content->description('Add, Edit & Delete Hotel');
 
             $content->body($this->form());
         });

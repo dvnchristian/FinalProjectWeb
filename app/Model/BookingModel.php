@@ -15,6 +15,8 @@ class BookingModel extends Model
 
     public function booking()
     {
-      return $this->belongsTo('App\Model\HotelModel');
+      return $this->belongsTo('app\Model\UserAccountModel');
+
+      return $this->hasMany('app\Model\RoomModel');
     }
 }

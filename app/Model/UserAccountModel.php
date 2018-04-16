@@ -35,4 +35,9 @@ class UserAccountModel extends Authenticatable
     {
         return [];
     }
+
+    public function useraccount()
+    {
+      return $this->hasMany('app\Model\BookingModel'); 
+    }
 }
