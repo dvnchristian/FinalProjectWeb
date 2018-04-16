@@ -26,7 +26,6 @@ class HotelController extends Controller
       "hotelAddress"  => $request->hotelAddress,
       "hotelPhone"  => $request->hotelPhone,
       "hotelStar" =>$request->hotelStar
-
     ];
 
 
@@ -68,7 +67,6 @@ class HotelController extends Controller
 
     $hotel = $this->hotel->find($hotelID);
 
-
     $hotel->hotelName = $request->hotelName;
     $hotel->hotelLocation= $request ->hotelLocation;
     $hotel->hotelAddress = $request->hotelAddress;
@@ -82,9 +80,4 @@ class HotelController extends Controller
          'msg'=>'success',
      ],200);
   }
-
-
-
-
-
 }

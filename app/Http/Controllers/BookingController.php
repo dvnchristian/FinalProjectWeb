@@ -13,21 +13,18 @@ class BookingController extends Controller
 
   public function __construct(BookingModel $booking)
   {
-    $this ->booking = $booking;
+    $this->booking = $booking;
   }
 
   public function registerBooking(Request $request)
   {
-
     $booking =
     [
-
       "noOfPeople"  => $request->noOfPeople,
       "checkIn"  => $request->checkIn,
       "checkOut"  => $request->checkOut,
       "roomQty" => $request->roomQty
     ];
-
 
     $booking = $this->booking->create($booking);
 
@@ -41,13 +38,11 @@ class BookingController extends Controller
     $booking = $this->booking->all();
 
     return $booking;
-
   }
 
   public function findBooking($bookingID)
   {
     $booking = $this->booking->find($bookingID);
-
 
     return $booking;
   }
@@ -63,14 +58,12 @@ class BookingController extends Controller
 
   public function updateviewBooking(Request $request, $booking)
   {
-
-    $booking= $this->booking->find($bookingID);
+    $booking = $this->booking->find($bookingID);
 
     $booking->noOfPeople = $request->noOfPeople;
     $booking->checkIn = $request->checkIn;
     $booking->checkOut = $request->checkOut;
     $booking->roomQty = $request->roomQty;
-
 
     $booking = $booking->save();
 
@@ -78,9 +71,4 @@ class BookingController extends Controller
          'msg'=>'success',
      ],200);
   }
-
-
-
-
-
 }

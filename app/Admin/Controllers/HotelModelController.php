@@ -89,8 +89,8 @@ class HotelModelController extends Controller
      */
     protected function form()
     {
-        return Admin::form(HotelModel::class, function (Form $form) {
-
+        return Admin::form(HotelModel::class, function (Form $form)
+        {
             $form->display('id', 'ID');
             $form->text('hotelName');
             $form->text('hotelLocation');
@@ -98,6 +98,7 @@ class HotelModelController extends Controller
             $form->text('hotelPhone');
             $form->text('hotelStar');
             $form->image('hotelImage')->move('image')->uniqueName();
+
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });

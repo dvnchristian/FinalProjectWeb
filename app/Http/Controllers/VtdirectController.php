@@ -105,6 +105,7 @@ class VtdirectController extends Controller
             if($response->transaction_status == "capture")
             {
                 //success
+                $has_Paid = $this->booking->where("id", "=", "$id")->update(['has_Paid' => true]);
                 echo "Transaksi berhasil. <br />";
                 echo "Status transaksi untuk order id ".$response->order_id.": ".$response->transaction_status;
 

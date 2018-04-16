@@ -16,8 +16,8 @@ class Room extends Migration
       Schema::create('room', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->enum('roomType', ['deluxe', 'superior', 'premier', 'executive']);
-        $table->enum('bedType', ['single', 'twin', 'double']);
+        $table->enum('roomType', ['Deluxe', 'Superior', 'Premier', 'Executive']);
+        $table->enum('bedType', ['Single', 'Twin', 'Double']);
         $table->integer('roomPrice');
         $table->integer('qty');
         $table->unsignedinteger('hotelID')->default(1);
