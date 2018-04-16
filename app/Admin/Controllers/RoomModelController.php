@@ -43,7 +43,7 @@ class RoomModelController extends Controller
         return Admin::content(function (Content $content) use ($id) {
 
             $content->header('Room');
-            $content->description('Add, Edit & Delete Room');
+            $content->description('Edit Room');
 
             $content->body($this->form()->edit($id));
         });
@@ -59,7 +59,7 @@ class RoomModelController extends Controller
         return Admin::content(function (Content $content) {
 
           $content->header('Room');
-          $content->description('Add, Edit & Delete Room');
+          $content->description('Add Room');
 
             $content->body($this->form());
         });

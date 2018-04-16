@@ -43,7 +43,7 @@ class HotelModelController extends Controller
         return Admin::content(function (Content $content) use ($id) {
 
             $content->header('Hotel');
-            $content->description('Add, Edit & Delete Hotel');
+            $content->description('Edit Hotel');
 
             $content->body($this->form()->edit($id));
         });
@@ -59,7 +59,7 @@ class HotelModelController extends Controller
         return Admin::content(function (Content $content) {
 
             $content->header('Hotel');
-            $content->description('Add, Edit & Delete Hotel');
+            $content->description('Add Hotel');
 
             $content->body($this->form());
         });

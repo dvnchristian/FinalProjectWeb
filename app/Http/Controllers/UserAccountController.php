@@ -27,7 +27,6 @@ class UserAccountController extends Controller
       "lName" => $request->lName
       ];
 
-
     $user = $this->user->create($user);
 
     return response([
@@ -37,12 +36,14 @@ class UserAccountController extends Controller
 
   public function all()
   {
-  try{
+  try
+  {
     $user=$this->user->get();
 
     return $user;
   }
-  catch(Exception $ex){
+  catch(Exception $ex)
+  {
     return response('Failed',400);
   }
 
