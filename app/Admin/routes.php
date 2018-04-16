@@ -10,9 +10,8 @@ Route::group([
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
 
-    $router->get('/', 'HomeController@index');
-
-    $router->resource('demo/users', UserController::class);
-    $router->resource('demo/hotel', HotelController::class);
+    $router->get('/home', 'HomeController@index');
+    $router->resource('/hotel', HotelModelController::class);
+    $router->resource('/room', RoomModelController::class);
 
 });

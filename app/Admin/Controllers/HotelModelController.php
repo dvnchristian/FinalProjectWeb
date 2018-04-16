@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Model\RoomModel;
 use App\Model\HotelModel;
 
 use Encore\Admin\Form;
@@ -11,7 +12,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class HotelController extends Controller
+class HotelModelController extends Controller
 {
     use ModelForm;
 

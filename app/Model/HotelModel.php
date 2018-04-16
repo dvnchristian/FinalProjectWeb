@@ -13,10 +13,9 @@ class HotelModel extends Model
       'hotelPhone', 'hotelStar'];
     protected $guarded = [];
 
-    class hotel extends ()
+    public function hotel()
     {
       return $this->hasMany(App\Model\RoomModel);
-      return $this->hasMany(App\Model\BookingModel);
     }
 
     // public function hotel()
