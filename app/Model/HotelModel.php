@@ -13,9 +13,14 @@ class HotelModel extends Model
       'hotelPhone', 'hotelStar'];
     protected $guarded = [];
 
-    // public function room()
-    // {
-    //   return $this->belongsTo('App\Models\RoomTypeModel');
-    // }
+    class hotel extends ()
+    {
+      return $this->hasMany(App\Model\RoomModel);
+      return $this->hasMany(App\Model\BookingModel);
+    }
 
+    // public function hotel()
+    // {
+    //   return $this->hasMany(App\Model\BookingModel);
+    // }
 }

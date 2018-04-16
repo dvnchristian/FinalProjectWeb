@@ -13,32 +13,8 @@ class BookingModel extends Model
       'comment', 'rating', 'has_Paid', 'hotelID', 'userID', 'roomID'];
     protected $guarded = [];
 
-    // public function HotelModel()
-    // {
-    //   return $this->belongsTo('App\Models\HotelModel');
-    // }
-    //
-    // public function UserAccountModelModel()
-    // {
-    //   return $this->belongsTo('App\Models\UserAccountModel');
-    // }
-    //
-    // public function RoomTypeModel()
-    // {
-    //   return $this->belongsTo('App\Models\RoomTypeModel');
-    // }
-    public function HotelModel()
+    public function booking()
     {
       return $this->belongsTo('App\Model\HotelModel');
-    }
-
-    public function UserAccountModel()
-    {
-      return $this->belongsTo('App\Model\UserAccountModel');
-    }
-
-    public function RoomTypeModel()
-    {
-      return $this->belongsTo('App\Model\RoomTypeModel');
     }
 }

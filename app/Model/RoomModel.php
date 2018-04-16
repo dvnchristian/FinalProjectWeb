@@ -10,4 +10,9 @@ class RoomModel extends Model
     protected $table = "room";
     protected $fillable = ['roomType', 'bedType', 'roomPrice', 'qty','hotelID'];
     protected $guarded = [];
+
+    public function room()
+    {
+      return $this->belongsTo('App\Model\HotelModel');
+    }
 }
