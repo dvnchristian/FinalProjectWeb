@@ -57,7 +57,7 @@ class BookingController extends Controller
      ],200);
   }
 
-  public function checkRoomStock($roomID, $qty)
+  public function bookRoom($roomID, $qty)
   {
     $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
 

@@ -59,7 +59,7 @@ Route::group(['middleware' => ['jwt.auth']], function()
     });
 });
 
-Route::post('updateRoomStock/{roomID}/{qty}', "BookingController@checkRoomStock");
+Route::post('bookRoom/{roomID}/{qty}', "BookingController@checkRoomStock");
 Route::get('/review', "ReviewController@allReview");
 Route::get('/review/{reviewID}', "ReviewController@findReview");
 Route::delete('/review/{reviewID}', "ReviewController@destroyReview");
