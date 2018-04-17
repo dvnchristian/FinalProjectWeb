@@ -60,7 +60,7 @@ class RoomController extends Controller
 
   public function checkRoomStock($roomID, $qty)
   {
-    $currStock = RoomModel::where('id', '=', $roomID) ->value('qty');
+    $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
 
     if($currStock < $qty)
     {
@@ -79,6 +79,11 @@ class RoomController extends Controller
 
       return response(['msg' => 'Booking Successful. Stock Left '.$currStock]);
     }
+  }
+
+  public function cancelRoom($bookingID)
+  {
+    $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
   }
 
   public function updateviewRoom(Request $request, $room)

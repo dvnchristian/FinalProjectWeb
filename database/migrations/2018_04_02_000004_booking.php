@@ -23,14 +23,9 @@ class Booking extends Migration
         $table->integer('rating');
         $table->boolean('has_Paid')->default(0);
 
-        $table->unsignedinteger('hotelID')->default(1);
         $table->unsignedinteger('userID')->default(1);
         $table->unsignedinteger('roomID')->default(1);
 
-        $table->foreign('hotelID')
-                  ->references('id')->on('hotel')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
         $table->foreign('userID')
                   ->references('id')->on('useraccount')
                   ->onDelete('cascade')
