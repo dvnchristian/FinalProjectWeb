@@ -31,7 +31,7 @@ class AuthController extends Controller
         ];
         $validator = Validator::make($credentials, $rules);
         if($validator->fails()) {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()]);
+            return response()->json(['success'=> false, 'error'=> $validator->messages()], 422);
         }
         $name = $request->name;
         $email = $request->email;
@@ -103,7 +103,7 @@ class AuthController extends Controller
         ];
         $validator = Validator::make($credentials, $rules);
         if($validator->fails()) {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()]);
+            return response()->json(['success'=> false, 'error'=> $validator->messages()], 422);
         }
 
         $credentials['is_verified'] = 1;
@@ -118,6 +118,7 @@ class AuthController extends Controller
             return response()->json(['success' => false, 'error' => 'Failed to login, please try again.'], 500);
         }
         // all good so return the token
+
         return response()->json(['success' => true, 'data'=> [ 'token' => $token ]]);
     }
     /**

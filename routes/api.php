@@ -59,15 +59,11 @@ Route::group(['middleware' => ['jwt.auth']], function()
     });
 });
 
-Route::post('updateRoomStock/{roomID}/{qty}', "RoomController@checkRoomStock");
+Route::post('updateRoomStock/{roomID}/{qty}', "BookingController@checkRoomStock");
 Route::get('/review', "ReviewController@allReview");
 Route::get('/review/{reviewID}', "ReviewController@findReview");
 Route::delete('/review/{reviewID}', "ReviewController@destroyReview");
 Route::put('/review/{reviewID}', "ReviewController@updateviewReview");
-
-// Route::get('user/verify/{verification_code}', 'AuthController@verifyUser');
-// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
-// Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('password.reset');
 
 //midtrans Routes
 Route::get('/vtweb', 'PagesController@vtweb');

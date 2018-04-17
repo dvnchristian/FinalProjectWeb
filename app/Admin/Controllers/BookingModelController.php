@@ -2,7 +2,9 @@
 
 namespace App\Admin\Controllers;
 
+use App\Model\BookingModel;
 use App\Model\UserAccountModel;
+use App\Model\RoomModel;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +13,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class UserAccountModelController extends Controller
+class BookingModelController extends Controller
 {
     use ModelForm;
 
@@ -24,8 +26,8 @@ class UserAccountModelController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('User');
-            $content->description('Add, Edit & Delete User');
+            $content->header('Booking');
+            $content->description('Add, Edit & Delete Booking');
 
             $content->body($this->grid());
         });
@@ -41,8 +43,8 @@ class UserAccountModelController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('Users');
-            $content->description('Edit Users');
+            $content->header('Booking');
+            $content->description('Edit Booking');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +59,8 @@ class UserAccountModelController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('Users');
-            $content->description('Add Users');
+            $content->header('Booking');
+            $content->description('Add Booking');
 
             $content->body($this->form());
         });
@@ -71,11 +73,12 @@ class UserAccountModelController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(UserAccountModel::class, function (Grid $grid) {
+        return Admin::grid(BookingModel::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->columns('name', 'email', 'password',
-            'phone', 'gender', 'city', 'is_verified');
+            $grid->columns(
+              'noOfPeople','checkInDate', 'checkOutDate',
+              'comment', 'rating', 'noOfRooms', 'userID', 'roomID');
 
             $grid->created_at();
             $grid->updated_at();
@@ -89,18 +92,20 @@ class UserAccountModelController extends Controller
      */
     protected function form()
     {
-        return Admin::form(UserAccountModel::class, function (Form $form) {
+        return Admin::form(BookingModel::class, function (Form $form) {
 
-            $form->display('id', 'ID');
-            $form->text('name');
-            $form->text('password');
-            $form->text('phone');
-            $form->text('gender');
-            $form->text('city');
-            $form->text('is_verified');
+          $form->display('id', 'ID');
+          $form->text('noOfPeople');
+          $form->date('checkInDate');
+          $form->date('checkOutDate');
+          $form->text('comment');
+          $form->text('rating');
+          $form->text('noOfRooms');
+          $form->select('userID')->options(UserAccountModel::all()->pluck('name', 'id'));
+          $form->select('roomID')->options(RoomModel::all()->pluck('id', 'id'));
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+          $form->display('created_at', 'Created At');
+          $form->display('updated_at', 'Updated At');
         });
     }
 }

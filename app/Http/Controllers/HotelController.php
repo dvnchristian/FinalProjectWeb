@@ -8,8 +8,7 @@ use Exception;
 
 class HotelController extends Controller
 {
-
-    protected $hotel;
+  protected $hotel;
 
   public function __construct(HotelModel $hotel)
   {
@@ -28,12 +27,11 @@ class HotelController extends Controller
       "hotelStar" =>$request->hotelStar
     ];
 
-
     $hotel = $this->hotel->create($hotel);
 
     return response
     ([
-             'msg'=>'success',
+      'msg'=>'success',
     ],200);
   }
 

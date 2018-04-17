@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\BookingModel;
+use App\Model\RoomModel;
 use Exception;
 
 class BookingController extends Controller
@@ -54,6 +55,29 @@ class BookingController extends Controller
     return response([
          'msg'=>'success',
      ],200);
+  }
+
+  public function checkRoomStock($roomID, $qty)
+  {
+    $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
+
+    if($currStock < $qty)
+    {
+      return response([
+        'msg' => 'There is no enough room, current room quantity: '. $currStock
+      ]);
+    }
+    else
+    {
+      $currStock = $currStock - $qty;
+
+      RoomModel::where('id', '=', $roomID)
+      ->update([
+        'qty'=>$currStock
+      ]);
+
+      return response(['msg' => 'Booking Successful. Stock Left: '.$currStock]);
+    }
   }
 
   public function updateviewBooking(Request $request, $booking)

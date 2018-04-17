@@ -10,7 +10,7 @@ class BookingModel extends Model
     protected $table = "booking";
     protected $fillable = [
       'noOfPeople', 'checkIn', 'checkOut',
-      'comment', 'rating', 'has_Paid', 'userID', 'roomID'];
+      'comment', 'rating', 'noOfRooms', 'userID', 'roomID'];
     protected $guarded = [];
 
     public function booking()

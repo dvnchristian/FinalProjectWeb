@@ -21,7 +21,7 @@ class Booking extends Migration
         $table->dateTime('checkOut');
         $table->string('comment');
         $table->integer('rating');
-        $table->boolean('has_Paid')->default(0);
+        $table->integer('noOfRooms');
 
         $table->unsignedinteger('userID')->default(1);
         $table->unsignedinteger('roomID')->default(1);

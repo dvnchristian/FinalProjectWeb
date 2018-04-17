@@ -58,34 +58,6 @@ class RoomController extends Controller
      ],200);
   }
 
-  public function checkRoomStock($roomID, $qty)
-  {
-    $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
-
-    if($currStock < $qty)
-    {
-      return response([
-        'msg' => 'There is no enough room, current room quantity = '. $currStock
-      ]);
-    }
-    else
-    {
-      $currStock = $currStock - $qty;
-
-      RoomModel::where('id', '=', $roomID)
-      ->update([
-        'qty'=>$currStock
-      ]);
-
-      return response(['msg' => 'Booking Successful. Stock Left '.$currStock]);
-    }
-  }
-
-  public function cancelRoom($bookingID)
-  {
-    $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
-  }
-
   public function updateviewRoom(Request $request, $room)
   {
 
