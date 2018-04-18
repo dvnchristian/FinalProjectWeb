@@ -166,4 +166,9 @@ class AuthController extends Controller
             'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
         ]);
     }
+
+    public function changePassword()
+    {
+      
+    }
 }

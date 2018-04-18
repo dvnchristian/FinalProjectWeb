@@ -75,7 +75,7 @@ class RoomModelController extends Controller
         return Admin::grid(RoomModel::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->columns('roomType','hotelID', 'bedType', 'roomPrice', 'qty');
+            $grid->columns('roomType','hotelID', 'bedType', 'roomPrice', 'qty', 'roomImage');
 
             $grid->created_at();
             $grid->updated_at();
@@ -97,6 +97,7 @@ class RoomModelController extends Controller
             $form->text('bedType');
             $form->text('roomPrice');
             $form->text('qty');
+            $form->text('roomImage');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

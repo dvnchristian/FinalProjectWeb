@@ -10,7 +10,7 @@ class HotelModel extends Model
     protected $table = 'hotel';
     protected $fillable = [
       'hotelName', 'hotelLocation', 'hotelAddress',
-      'hotelPhone', 'hotelStar'];
+      'hotelPhone', 'hotelStar', 'hotelImage', 'description'];
     protected $guarded = [];
 
     public function hotel()

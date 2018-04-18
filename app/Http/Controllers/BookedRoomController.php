@@ -54,28 +54,10 @@ class BookedRoomController extends Controller
        ],200);
     }
 
-    // public function bookRoom($roomID, $qty)
-    // {
-    //   $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
-    //
-    //   if($currStock < $qty)
-    //   {
-    //     return response([
-    //       'msg' => 'There is no enough room, current room quantity: '. $currStock
-    //     ]);
-    //   }
-    //   else
-    //   {
-    //     $currStock = $currStock - $qty;
-    //
-    //     RoomModel::where('id', '=', $roomID)
-    //     ->update([
-    //       'qty'=>$currStock
-    //     ]);
-    //
-    //     return response(['msg' => 'Booking Successful. Stock Left: '.$currStock]);
-    //   }
-    // }
+    public function bookRoom($roomID)
+    {
+      $currStock = RoomModel::where('id', '=', $roomID);
+    }
 
     public function updateviewBookedRoom(Request $request, $bookedRoom)
     {

@@ -17,7 +17,6 @@ class HotelController extends Controller
 
   public function registerHotel(Request $request)
   {
-
     $hotel =
     [
       "hotelName"  => $request->hotelName,
@@ -25,7 +24,8 @@ class HotelController extends Controller
       "hotelAddress"  => $request->hotelAddress,
       "hotelPhone"  => $request->hotelPhone,
       "hotelStar" =>$request->hotelStar,
-      "hotelImage" =>$request->hotelImage
+      "hotelImage" =>$request->hotelImage,
+      "description" =>$request->description
     ];
 
     $hotel = $this->hotel->create($hotel);
@@ -44,10 +44,14 @@ class HotelController extends Controller
 
   }
 
+  public function returnImageURL()
+  {
+
+  }
+
   public function findHotel($hotelID)
   {
     $hotel = $this->hotel->find($hotelID);
-
 
     return $hotel;
   }
@@ -71,6 +75,8 @@ class HotelController extends Controller
     $hotel->hotelAddress = $request->hotelAddress;
     $hotel->hotelPhone = $request->hotelPhone;
     $hotel->hotelStar = $request->hotelStar;
+    $hotel->hotelImage = $request->hotelImage;
+    $hotel->description = $request->description;
 
 
     $hotel = $hotel->save();

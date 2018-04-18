@@ -22,7 +22,8 @@ class RoomController extends Controller
     [
       "roomType"  => $request->roomType,
       "bedType"  => $request->bedType,
-      "roomPrice"  => $request->roomPrice
+      "roomPrice"  => $request->roomPrice,
+      "roomImage" => $request->roomImage
     ];
 
 

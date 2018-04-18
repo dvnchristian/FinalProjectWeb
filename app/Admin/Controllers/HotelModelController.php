@@ -76,7 +76,7 @@ class HotelModelController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->columns('hotelName', 'hotelLocation', 'hotelAddress',
-            'hotelPhone', 'hotelStar','hotelImage');
+            'hotelPhone', 'hotelStar','hotelImage', 'description');
 
             $grid->created_at();
             $grid->updated_at();
@@ -98,7 +98,8 @@ class HotelModelController extends Controller
             $form->text('hotelAddress');
             $form->text('hotelPhone');
             $form->text('hotelStar');
-            $form->image('hotelImage')->move('image')->uniqueName();
+            $form->text('hotelImage');
+            $form->text('description');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

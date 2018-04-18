@@ -20,6 +20,7 @@ class Room extends Migration
         $table->enum('bedType', ['Single', 'Twin', 'Double']);
         $table->integer('roomPrice');
         $table->integer('qty');
+        $table->string('roomImage');
         $table->unsignedinteger('hotelID')->default(1);
 
         $table->foreign('hotelID')
