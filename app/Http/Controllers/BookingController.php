@@ -9,7 +9,6 @@ use Exception;
 
 class BookingController extends Controller
 {
-
   protected $booking;
 
   public function __construct(BookingModel $booking)

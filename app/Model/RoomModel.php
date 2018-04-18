@@ -15,5 +15,7 @@ class RoomModel extends Model
     public function room()
     {
       return $this->belongsTo('App\Model\BookingModel');
+
+      return $this->hasMany('App\Model\BookedRoomModel');
     }
 }

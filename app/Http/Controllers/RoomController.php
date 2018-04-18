@@ -18,7 +18,6 @@ class RoomController extends Controller
 
   public function registerRoom(Request $request)
   {
-
     $room =
     [
       "roomType"  => $request->roomType,
