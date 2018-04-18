@@ -38,6 +38,6 @@ class UserAccountModel extends Authenticatable
 
     public function useraccount()
     {
-      return $this->hasMany('app\Model\BookingModel'); 
+      return $this->hasMany('app\Model\BookingModel');
     }
 }

@@ -19,12 +19,12 @@ class UserAccountController extends Controller
   {
 
     $user = [
+      "name"  => $request->name,
       "email"  => $request->email,
-      "username"  => $request->username,
       "password"  => md5($request->password),
       "phone" => $request->phone,
-      "fName" => $request->fName,
-      "lName" => $request->lName
+      "gender" => $request->gender,
+      "city" => $request->city
       ];
 
     $user = $this->user->create($user);
@@ -71,12 +71,15 @@ class UserAccountController extends Controller
 
     $user = $this->user->find($userAccountID);
 
+
+    $user->name = $request->name;
     $user->email = $request->email;
-    $user->username = $request->name;
     $user->password = md5($request->password);
     $user->phone = $request->phone;
-    $user->fName = $request->fName;
-    $user->lName = $request->lName;
+    $user->gender = $request->gender;
+    $user->city = $request->city;
+    $user->is_verified = $request->is_verified;
+
     $user = $user->save();
 
     return response([

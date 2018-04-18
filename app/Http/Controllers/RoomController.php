@@ -20,9 +20,12 @@ class RoomController extends Controller
   {
     $room =
     [
-      "roomType"  => $request->roomType,
-      "bedType"  => $request->bedType,
-      "roomPrice"  => $request->roomPrice,
+      "numberOfBed"  => $request->numberOfBed,
+      "numberOfBath"  => $request->numberOfBath,
+      "location"  => $request->location,
+      "address" => $request->address,
+      "contactNo" => $request->contactNo,
+      "roomPrice" => $request->roomPrice,
       "roomImage" => $request->roomImage
     ];
 
@@ -58,14 +61,19 @@ class RoomController extends Controller
      ],200);
   }
 
-  public function updateviewRoom(Request $request, $room)
+  public function updateviewRoom(Request $request, $roomID)
   {
 
     $room= $this->room->find($roomID);
 
-    $room->roomType = $request->roomType;
-    $room->bedType = $request->bedType;
+    $room->numberOfBed = $request->numberOfBed;
+    $room->numberOfBath = $request->numberOfBath;
+    $room->location = $request->location;
+    $room->address = $request->address;
+    $room->contactNo = $request->contactNo;
     $room->roomPrice = $request->roomPrice;
+    $room->roomImage = $request->roomImage;
+
 
     $room = $room->save();
 
@@ -73,4 +81,11 @@ class RoomController extends Controller
          'msg'=>'success',
      ],200);
   }
+
+  public function getPrice($id)
+  {
+    $room = $this->room->where('id',$id)->first();
+    $
+  }
+
 }

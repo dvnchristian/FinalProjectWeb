@@ -16,12 +16,10 @@ class Booking extends Migration
       Schema::create('booking', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->integer('noOfPeople');
-        $table->dateTime('checkIn');
-        $table->dateTime('checkOut');
+        $table->dateTime('checkInDate');
+        $table->integer('lengthOfStay');
         $table->string('comment');
         $table->integer('rating');
-        $table->integer('noOfRooms');
 
         $table->unsignedinteger('userID')->default(1);
         $table->unsignedinteger('roomID')->default(1);

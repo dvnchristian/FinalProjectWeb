@@ -8,7 +8,7 @@ class BookedRoomModel extends Model
 {
   public $timestamps = false;
   protected $table = "bookedroom";
-  protected $fillable = ['roomID', 'date', 'qty'];
+  protected $fillable = ['roomID', 'date'];
   protected $guarded = [];
 
   public function bookedRoom()

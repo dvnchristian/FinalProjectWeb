@@ -9,7 +9,7 @@ class RoomModel extends Model
     public $timestamps = false;
     protected $table = "room";
     protected $fillable = [
-      'roomType', 'bedType', 'roomPrice', 'qty', 'roomImage', 'hotelID'];
+      'numberOfBed', 'numberOfBath', 'Location', 'Address', 'contactNo', 'roomPrice','roomImage'];
     protected $guarded = [];
 
     public function room()

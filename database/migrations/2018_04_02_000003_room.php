@@ -16,17 +16,13 @@ class Room extends Migration
       Schema::create('room', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->enum('roomType', ['Deluxe', 'Superior', 'Premier', 'Executive']);
-        $table->enum('bedType', ['Single', 'Twin', 'Double']);
+        $table->integer('numberOfBed');
+        $table->integer('numberOfBath');
+        $table->string('Location');
+        $table->string('Address');
+        $table->string('contactNo');
         $table->integer('roomPrice');
-        $table->integer('qty');
         $table->string('roomImage');
-        $table->unsignedinteger('hotelID')->default(1);
-
-        $table->foreign('hotelID')
-                  ->references('id')->on('hotel')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
       });
     }
 

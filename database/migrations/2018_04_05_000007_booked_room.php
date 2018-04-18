@@ -18,7 +18,6 @@ class BookedRoom extends Migration
         $table->increments('id');
         $table->unsignedinteger('roomID')->default(1);
         $table->dateTime('date');
-        $table->integer('qty');
 
         $table->foreign('roomID')
                   ->references('id')->on('room')

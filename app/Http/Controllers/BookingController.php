@@ -20,10 +20,10 @@ class BookingController extends Controller
   {
     $booking =
     [
-      "noOfPeople"  => $request->noOfPeople,
-      "checkIn"  => $request->checkIn,
-      "checkOut"  => $request->checkOut,
-      "roomQty" => $request->roomQty
+      "checkInDate"  => $request->checkInDate,
+      "lengthOfStay"  => $request->lengthOfStay,
+      "comment"  => $request->comment,
+      "rating" => $request->rating,
     ];
 
     $booking = $this->booking->create($booking);
@@ -79,14 +79,14 @@ class BookingController extends Controller
     }
   }
 
-  public function updateviewBooking(Request $request, $booking)
+  public function updateviewBooking(Request $request, $bookingID)
   {
     $booking = $this->booking->find($bookingID);
 
-    $booking->noOfPeople = $request->noOfPeople;
-    $booking->checkIn = $request->checkIn;
-    $booking->checkOut = $request->checkOut;
-    $booking->roomQty = $request->roomQty;
+    $booking->checkInDate = $request->checkIn;
+    $booking->lengthOfStay = $request->lengthOfStay;
+    $booking->comment = $request->comment;
+    $booking->rating = $request->rating;
 
     $booking = $booking->save();
 

@@ -21,7 +21,6 @@ class BookedRoomController extends Controller
       $bookedRoom =
       [
         "date"  => $request->date,
-        "qty" => $request->qty
       ];
 
       $bookedRoom = $this->bookedRoom->create($bookedRoom);
@@ -64,7 +63,6 @@ class BookedRoomController extends Controller
       $bookedRoom = $this->bookedRoom->find($bookedRoomID);
 
       $bookedRoom->date = $request->date;
-      $booking->qty = $request->qty;
 
       $bookedRoom = $bookedRoom->save();
 
