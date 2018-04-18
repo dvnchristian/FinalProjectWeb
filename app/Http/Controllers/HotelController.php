@@ -24,7 +24,8 @@ class HotelController extends Controller
       "hotelLocation" =>$request->hotelLocation,
       "hotelAddress"  => $request->hotelAddress,
       "hotelPhone"  => $request->hotelPhone,
-      "hotelStar" =>$request->hotelStar
+      "hotelStar" =>$request->hotelStar,
+      "hotelImage" =>$request->hotelImage
     ];
 
     $hotel = $this->hotel->create($hotel);
