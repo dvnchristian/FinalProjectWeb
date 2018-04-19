@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\RoomModel;
+use App\Model\BookingModel;
+use App\Model\BookedRoomModel;
+
 use Exception;
 
 class RoomController extends Controller
 {
-
   protected $room;
+  protected $bookedRoom;
 
-  public function __construct(RoomModel $room)
+  public function __construct(RoomModel $room, BookedRoomModel $bookedRoom)
   {
     $this ->room = $room;
+    $this->bookedRoom = $bookedRoom;
   }
 
   public function registerRoom(Request $request)
@@ -22,13 +26,12 @@ class RoomController extends Controller
     [
       "numberOfBed"  => $request->numberOfBed,
       "numberOfBath"  => $request->numberOfBath,
-      "location"  => $request->location,
-      "address" => $request->address,
-      "contactNo" => $request->contactNo,
+      // "location"  => $request->location,
+      // "address" => $request->address,
+      // "contactNo" => $request->contactNo,
       "roomPrice" => $request->roomPrice,
       "roomImage" => $request->roomImage
     ];
-
 
     $room = $this->room->create($room);
 
@@ -68,9 +71,9 @@ class RoomController extends Controller
 
     $room->numberOfBed = $request->numberOfBed;
     $room->numberOfBath = $request->numberOfBath;
-    $room->location = $request->location;
-    $room->address = $request->address;
-    $room->contactNo = $request->contactNo;
+    // $room->location = $request->location;
+    // $room->address = $request->address;
+    // $room->contactNo = $request->contactNo;
     $room->roomPrice = $request->roomPrice;
     $room->roomImage = $request->roomImage;
 
@@ -85,7 +88,6 @@ class RoomController extends Controller
   public function getPrice($id)
   {
     $room = $this->room->where('id',$id)->first();
-    $
   }
 
 }

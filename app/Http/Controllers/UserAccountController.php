@@ -12,12 +12,11 @@ class UserAccountController extends Controller
 
   public function __construct(UserAccountModel $user)
   {
-    $this ->user = $user;
+    $this->user = $user;
   }
 
   public function register(Request $request)
   {
-
     $user = [
       "name"  => $request->name,
       "email"  => $request->email,
@@ -36,23 +35,21 @@ class UserAccountController extends Controller
 
   public function all()
   {
-  try
-  {
-    $user=$this->user->get();
+    try
+    {
+      $user=$this->user->get();
 
-    return $user;
-  }
-  catch(Exception $ex)
-  {
-    return response('Failed',400);
-  }
-
+      return $user;
+    }
+    catch(Exception $ex)
+    {
+      return response('Failed',400);
+    }
   }
 
   public function find($userAccountID)
   {
     $user = $this->user->find($userAccountID);
-
 
     return $user;
   }
@@ -68,9 +65,7 @@ class UserAccountController extends Controller
 
   public function updateview(Request $request, $userAccountID)
   {
-
     $user = $this->user->find($userAccountID);
-
 
     $user->name = $request->name;
     $user->email = $request->email;

@@ -30,6 +30,45 @@ class BookedRoomController extends Controller
            ],200);
     }
 
+    public function searchRoom(Request $request)
+    {
+
+      $dateToday = date("Y-m-d H:i:s");
+      $credentials =  $request->only('checkInDate', 'checkOutDate');
+
+      $rules = [
+          'checkInDate' => 'required|date',
+          'checkOutDate' => 'required|date',
+      ];
+      $validator = Validator::make($credentials, $rules);
+      if(checkInDate < $dateToday || checkOutDate == $dateToday || checkOutDate < $dateToday)
+      {
+        return response()->json(['success'=> false, 'error'=> $validator->messages()], 422);
+      }
+
+      else
+      {
+        // get all the bookedRoomList for that specific room
+        $bookedRoom = BookedRoomController::allbookedRoom()->where([
+          ['date' > $request->checkInDate)],
+          ['date' < $request->checkOutDate],
+        ])->value('roomID');
+        for(let $i = 0 ; $i < count($bookedRoom); i++)
+        {
+          $room = RoomController::allRoom()
+        }
+
+
+        return $room;
+    }
+
+    public function testfunction()
+    {
+      $dateToday = date("Y-m-d H:i:s");
+      $bookedRoom = $this->bookedRoom->all()->where('date', '>=', $dateToday);
+      return $bookedRoom;
+    }
+
     public function allbookedRoom()
     {
       $bookedRoom = $this->bookedRoom->all();

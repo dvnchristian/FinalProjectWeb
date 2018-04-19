@@ -18,9 +18,9 @@ class Room extends Migration
         $table->increments('id');
         $table->integer('numberOfBed');
         $table->integer('numberOfBath');
-        $table->string('Location');
-        $table->string('Address');
-        $table->string('contactNo');
+        // $table->string('Location');
+        // $table->string('Address');
+        // $table->string('contactNo');
         $table->integer('roomPrice');
         $table->string('roomImage');
       });

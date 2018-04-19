@@ -56,9 +56,9 @@ class BookingController extends Controller
      ],200);
   }
 
-  public function bookRoom($roomID, $qty)
+  public function searchRoom($roomID)
   {
-    $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
+    // $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
 
     if($currStock < $qty)
     {
