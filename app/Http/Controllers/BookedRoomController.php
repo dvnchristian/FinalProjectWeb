@@ -65,11 +65,9 @@ class BookedRoomController extends Controller
     //
     // }
 
-    public function testfunction()
+    public function testFunction(Request $request)
     {
-      $dateToday = date("Y");
-      $year = substr($dateToday, -2);
-      return $year;
+
     }
 
     public function allbookedRoom()

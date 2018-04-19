@@ -26,9 +26,6 @@ class RoomController extends Controller
     [
       "numberOfBed"  => $request->numberOfBed,
       "numberOfBath"  => $request->numberOfBath,
-      // "location"  => $request->location,
-      // "address" => $request->address,
-      // "contactNo" => $request->contactNo,
       "roomPrice" => $request->roomPrice,
       "roomImage" => $request->roomImage
     ];
@@ -71,12 +68,8 @@ class RoomController extends Controller
 
     $room->numberOfBed = $request->numberOfBed;
     $room->numberOfBath = $request->numberOfBath;
-    // $room->location = $request->location;
-    // $room->address = $request->address;
-    // $room->contactNo = $request->contactNo;
     $room->roomPrice = $request->roomPrice;
     $room->roomImage = $request->roomImage;
-
 
     $room = $room->save();
 

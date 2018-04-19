@@ -24,10 +24,9 @@ class UserAccountController extends Controller
       "phone" => $request->phone,
       "gender" => $request->gender,
       "city" => $request->city,
-      // "ccNumber" => 0000000000000000,
-      // "CVV" => 000,
-      // "Name" => "",
-      // "expDate" => "00/00"
+      "ccNumber" => $request->ccNumber,
+      "cvv" => $request->cvv,
+      "expDate" => $request->expDate,
       ];
 
     $user = $this->user->create($user);
@@ -68,58 +67,63 @@ class UserAccountController extends Controller
      ],200);
   }
 
-  //buat validate kartu kredit
+  // Validate CC Number
   public function validateCCNumber(ccNumber)
   {
-    // benerin lagi angka nya belom beres = checked
+    // 16 digits checked
     if(ccNumber < 3374000000000000 || ccNumber > 4374999999999999)
     {
-      return false;
+      return "false";
     }
     else
     {
-      return true;
+      return "true";
     }
-
   }
 
+  //validate cvv
   public function validateCVV(cvv)
   {
     if(cvv < 000 || cvv > 999)
     {
-      return false;
+      return "false";
     }
     else
     {
-      return true;
+      return "true";
     }
   }
 
-  public function expiredate(dateExp)
+  public function validateExpireDate(dateExp)
   {
-    //validation
+    // validation
     // bulan nya di cek
     // manipulasi ambil 2 angka pertama buat bulan
     // expire date format MM/YY
 
-    var str1 = dateExp;
-    var month = str1.charAt(0) + str1.charAt(1);
-
-    if(month < 13 && month > 0)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-
     $yearNow = date("Y");
     $minYear = substr($yearNow, -2);
 
-    var str2 = 
-  }
+    var str = dateExp;
+    var month = str.charAt(0) + str.charAt(1);
+    var year = str.charAt(3) + str.charAt(4);
 
+    if(month < 13 && month > 0)
+    {
+      if(year < $minYear || year > $minYear + 5)
+      {
+        return "false";
+      }
+      else
+      {
+        return "true";
+      }
+    }
+    else
+    {
+      return "false";
+    }
+  }
 
   public function updateview(Request $request, $userAccountID)
   {
@@ -133,10 +137,16 @@ class UserAccountController extends Controller
     if(!validateCVVNumber($request->CVV))
     {
       // return json error
+      return response([
+               'msg'=>'fail',
+           ],400);
     }
     if(!expiredate($request->expdate))
     {
       //return json error
+      return response([
+               'msg'=>'fail',
+           ],400);
     }
 
     $user->name = $request->name;
@@ -147,9 +157,9 @@ class UserAccountController extends Controller
     $user->city = $request->city;
     $user->is_verified = $request->is_verified;
     //edit lg
-    // $user->ccNumber = $request->ccNumber;
-    // $user->CVV = $request->CVV;
-    // $user->expdate = $request->expdate;
+    $user->ccNumber = $request->ccNumber;
+    $user->CVV = $request->cvv;
+    $user->expDate = $request->expDate;
 
     // buat nya di BookedRoomController /  BookingController*
     // kalo buat di BookingController jgn lupa use BookedRoomController di top of the page

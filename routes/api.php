@@ -48,7 +48,7 @@ Route::get('/bookedRoom', "BookedRoomController@allbookedRoom");
 Route::get('/bookedRoom/{id}', "BookedRoomController@findBookedRoom");
 Route::delete('/bookedRoom/{id}', "BookedRoomController@destroyBookedRoom");
 Route::put('/bookedRoom/{id}', "BookedRoomController@updateviewBookedRoom");
-Route::get('/testbooked', "BookedRoomController@testfunction");
+Route::post('/testFunction', "BookedRoomController@testfunction");
 
 Route::post('/review', "ReviewController@registerReview");
 Route::get('/review', "ReviewController@allReview");
@@ -84,3 +84,7 @@ Route::post('/vt_notif', 'PagesController@notification');
 Route::get('/snap', 'SnapController@snap');
 Route::get('/snaptoken', 'SnapController@token');
 Route::post('/snapfinish', 'SnapController@finish');
+
+Route::post('/validateCCNumber', 'UserAccountController@validateCCNumber');
+Route::post('/validateExpireDate', 'UserAccountController@validateExpireDate');
+Route::post('/validateCVV', 'UserAccountController@validateCVV');

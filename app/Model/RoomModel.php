@@ -10,8 +10,6 @@ class RoomModel extends Model
     protected $table = "room";
     protected $fillable = [
       'numberOfBed', 'numberOfBath',
-      // , 'location',
-      // 'address', 'contactNo',
        'roomPrice','roomImage'];
     protected $guarded = [];
 

@@ -12,12 +12,10 @@ class UserAccountModel extends Authenticatable
     use Notifiable;
     public $timestamps = false;
     protected $table = "useraccount";
-    protected $fillable =
-    [
+    protected $fillable = [
       'name', 'email', 'password','phone', 'gender',
       'city', 'is_verified', 'ccNumber', 'cvv',
-      'expDate'
-    ];
+      'expDate'];
     protected $guarded = [];
 
     protected $hidden = [
