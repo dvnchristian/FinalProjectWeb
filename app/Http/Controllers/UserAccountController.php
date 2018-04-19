@@ -71,29 +71,53 @@ class UserAccountController extends Controller
   //buat validate kartu kredit
   public function validateCCNumber(ccNumber)
   {
-    // benerin lagi angka nya belom beres
-    if(ccNumber < 4374000000000 || ccNumber > 4374999999999999)
+    // benerin lagi angka nya belom beres = checked
+    if(ccNumber < 3374000000000000 || ccNumber > 4374999999999999)
     {
       return false;
     }
-    else {
+    else
+    {
       return true;
     }
 
   }
-  public function validateCVV(cvv){
-    // validation
+
+  public function validateCVV(cvv)
+  {
+    if(cvv < 000 || cvv > 999)
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
   }
-  public function expiredate(dateexp){
+
+  public function expiredate(dateExp)
+  {
     //validation
     // bulan nya di cek
     // manipulasi ambil 2 angka pertama buat bulan
     // expire date format MM/YY
 
-    var str = dateexp;
-    var res = str.charAt(0) + str.charAt(1);
-    if(res < 12) { res = "masuk sini"; }
-   	else if(res>12) { res = "masuk kesini"; }
+    var str1 = dateExp;
+    var month = str1.charAt(0) + str1.charAt(1);
+
+    if(month < 13 && month > 0)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+
+    $yearNow = date("Y");
+    $minYear = substr($yearNow, -2);
+
+    var str2 = 
   }
 
 
@@ -102,7 +126,9 @@ class UserAccountController extends Controller
     $user = $this->user->find($userAccountID);
     if(!validateCCNumber($request->ccNumber))
     {
-        // return json error
+      return response([
+               'msg'=>'success',
+           ],200);
     }
     if(!validateCVVNumber($request->CVV))
     {

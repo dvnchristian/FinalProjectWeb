@@ -23,6 +23,9 @@ class UserAccount extends Migration
         $table->enum('gender', ['Male', 'Female']);
         $table->string('city');
         $table->rememberToken();
+        $table->integer('ccNumber');
+        $table->string('cvv');
+        $table->string('expDate');
       });
     }
 
