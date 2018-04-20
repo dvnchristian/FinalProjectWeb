@@ -37,32 +37,32 @@ class UserAccountModelController extends Controller
      * @param $id
      * @return Content
      */
-    public function edit($id)
-    {
-        return Admin::content(function (Content $content) use ($id) {
-
-            $content->header('Users');
-            $content->description('Edit Users');
-
-            $content->body($this->form()->edit($id));
-        });
-    }
+    // public function edit($id)
+    // {
+    //     return Admin::content(function (Content $content) use ($id) {
+    //
+    //         $content->header('Users');
+    //         $content->description('Edit Users');
+    //
+    //         $content->body($this->form()->edit($id));
+    //     });
+    // }
 
     /**
      * Create interface.
      *
      * @return Content
      */
-    public function create()
-    {
-        return Admin::content(function (Content $content) {
-
-            $content->header('Users');
-            $content->description('Add Users');
-
-            $content->body($this->form());
-        });
-    }
+    // public function create()
+    // {
+    //     return Admin::content(function (Content $content) {
+    //
+    //         $content->header('Users');
+    //         $content->description('Add Users');
+    //
+    //         $content->body($this->form());
+    //     });
+    // }
 
     /**
      * Make a grid builder.
@@ -75,7 +75,7 @@ class UserAccountModelController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->columns('name', 'email', 'password',
-            'phone', 'gender', 'city', 'is_verified');
+            'phone', 'gender', 'city', 'ccNumber', 'cvv', 'expDate','is_verified');
 
             $grid->created_at();
             $grid->updated_at();
