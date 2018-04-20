@@ -16,11 +16,8 @@ class Room extends Migration
       Schema::create('room', function (Blueprint $table)
       {
         $table->increments('id');
-        $table->integer('numberOfBed');
-        $table->integer('numberOfBath');
-        // $table->string('Location');
-        // $table->string('Address');
-        // $table->string('contactNo');
+        $table->string('roomType');
+        $table->string('bedType');
         $table->integer('roomPrice');
         $table->string('roomImage');
       });
