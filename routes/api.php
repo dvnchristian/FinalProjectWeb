@@ -44,7 +44,6 @@ Route::group(['middleware' => ['jwt.auth']], function()
 {
     Route::get('logout', 'AuthController@logout');
     Route::put('editProfile', 'AuthController@editProfile');
-
 });
 
 Route::post('/validateCCNumber', 'UserAccountController@validateCCNumber');
