@@ -25,9 +25,6 @@ class AuthController extends Controller
         $rules = [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:useraccount',
-            // 'username' => 'required|unique:useraccount',
-            // 'password' => 'required|max:16',
-            // 'phone' => 'max:12'
         ];
         $validator = Validator::make($credentials, $rules);
         if($validator->fails()) {
@@ -35,7 +32,6 @@ class AuthController extends Controller
         }
         $name = $request->name;
         $email = $request->email;
-        // $password = $request->password;
 
         $user = [
           "name"=> $name,
@@ -55,7 +51,8 @@ class AuthController extends Controller
                 $mail->to($email, $name);
                 $mail->subject($subject);
             });
-        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
+        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up!
+        Please check your email to complete your registration with Hotel Mayor.']);
    }
 
     /**
@@ -169,6 +166,6 @@ class AuthController extends Controller
 
     public function changePassword()
     {
-      
+
     }
 }

@@ -17,6 +17,20 @@ class UserAccountController extends Controller
 
   public function register(Request $request)
   {
+    $rules = [
+        'name' => 'required|max:255',
+        'email' => 'required|email|max:255|unique:useraccount',
+        'ccNumber' => 'max:16',
+        'cvv' => 'max:3',
+        'expDate' => 'max:5',
+    ];
+    $validator = Validator::make($rules);
+
+    if($validator->fails())
+    {
+        return response()->json(['success'=> false, 'error'=> $validator->messages()], 422);
+    }
+
     $user = [
       "name"  => $request->name,
       "email"  => $request->email,
@@ -137,16 +151,18 @@ class UserAccountController extends Controller
     if(!validateCVVNumber($request->CVV))
     {
       // return json error
-      return response([
-               'msg'=>'fail',
-           ],400);
+      // return response([
+      //          'msg'=>'fail',
+      //      ],405);
+      return response()->json(['success'=> false, 'message'=> 'Invalid Credit Card Number']);
     }
     if(!expiredate($request->expdate))
     {
       //return json error
-      return response([
-               'msg'=>'fail',
-           ],400);
+      // return response([
+      //          'msg'=>'fail',
+      //      ],405);
+      return response()->json(['success'=> false, 'message'=> 'Invalid Credit Card Expiry Date']);
     }
 
     $user->name = $request->name;
