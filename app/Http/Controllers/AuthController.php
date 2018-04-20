@@ -28,9 +28,9 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:useraccount',
             'password' => 'required|max:16',
             'phone' => 'min:10|max:12',
-            'ccNumber' => 'min:16|max:16',
-            'cvv' => 'min:3|max:3',
-            'expDate' => 'max:5',
+            // 'ccNumber' => 'min:16|max:16',
+            // 'cvv' => 'min:3|max:3',
+            // 'expDate' => 'max:5',
         ];
         $validator = Validator::make($credentials, $rules);
         if($validator->fails()) {
@@ -38,6 +38,9 @@ class AuthController extends Controller
         }
         $name = $request->name;
         $email = $request->email;
+
+        // $message = AuthController::validateCCNumber($request->ccNumber);
+        // if($message !== ""){ return response()->json(['success'=> false, 'error'=> $message], 422);}
 
         $user = [
           "name"=> $name,
@@ -174,6 +177,15 @@ class AuthController extends Controller
 
     public function editProfile(Request $request)
     {
+      $message = AuthController::validateCCNumber($request->ccNumber);
+      if($message == ""){ return response()->json(['success'=> false, 'error'=> $message], 422);}
+
+      $message1 = AuthController::validateCVV($request->cvv);
+      if($message1 == ""){ return response()->json(['success'=> false, 'error'=> $message1], 422);}
+
+      $message2 = AuthController::validateExpireDate($request->expDate);
+      if($message2 == ""){ return response()->json(['success'=> false, 'error'=> $message2], 422);}
+
       try
       {
         $user = auth()->user();
@@ -199,67 +211,72 @@ class AuthController extends Controller
     // Validate CC Number
     public function validateCCNumber($ccNumber)
     {
+      $message = "CC No. success";
       // 16 digits checked
-      if(ccNumber < 3374000000000000 || ccNumber > 4374999999999999)
+      if($ccNumber < 3374000000000000 || $ccNumber > 5432999999999999)
       {
         return "Invalid Credit Card Number";
       }
       else
       {
+        return $message;
       }
     }
 
     //validate cvv
     public function validateCVV($cvv)
     {
-      if(cvv < 000 || cvv > 999)
+      $message = "cvv success";
+      if($cvv < 000 || $cvv > 999)
       {
         return "Invalid CVV";
       }
       else
       {
+        return $message;
       }
     }
 
-    public function validateExpireDate($dateExp)
+    public function validateExpireDate($expDate)
     {
+      $message = "Exp Date Validation Success";
+
       $dateNow = date("m-y");
       $minMonth = substr($dateNow, 0, -3);
       $minYear = substr($dateNow, -2);
 
-      $str = "13/24";
-      $ccMonth = substr($str, 0, 2);
-      $ccYear = substr($str, -2, 2);
-      $divider = substr($str, -3, 1);
+      $ccMonth = substr($expDate, 0, 2);
+      $ccYear = substr($expDate, -2, 2);
+      $divider = substr($expDate, -3, 1);
 
-      if($ccMonth < 13 && $ccMonth > 0)
+      if($ccYear < $minYear || $ccYear > $minYear + 5)
       {
-        if($ccMonth == $minMonth)
-        {
-          return "Invalid Month";
-        }
-        else
-        {
-          if($divider != "/")
-          {
-            return "Invalid Divider";
-          }
-          else
-          {
-            if($ccYear < $minYear || $ccYear > $minYear + 5)
-            {
-              return "Invalid Expiry Date";
-            }
-            else
-            {
-              return "Credit Card Validated";
-            }
-          }
-        }
+        return "Invalid Expiry Year";
       }
       else
       {
-        return "Invalid Credit Card";
+        if($divider != "/")
+        {
+          return "Invalid Divider";
+        }
+        else
+        {
+          if($ccMonth < 13 && $ccMonth > 0)
+          {
+            if($ccMonth == $minMonth && $ccYear < $minYear)
+            {
+              return "Invalid Month";
+            }
+            else
+            {
+              return $message;
+            }
+          }
+          else
+          {
+            return "Invalid Month";
+          }
+        }
       }
     }
 }
