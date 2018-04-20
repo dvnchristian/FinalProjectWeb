@@ -67,7 +67,7 @@ class BookedRoomController extends Controller
 
     public function testFunction(Request $request)
     {
-
+      
     }
 
     public function allbookedRoom()

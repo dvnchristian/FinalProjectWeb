@@ -21,10 +21,16 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $credentials = $request->only('name', 'email', 'password', 'phone', 'gender', 'city');
+        $credentials = $request->only(
+          'name', 'email', 'password', 'phone', 'ccNumber', 'cvv', 'expDate');
         $rules = [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:useraccount',
+            'password' => 'required|max:16',
+            'phone' => 'min:10|max:12',
+            'ccNumber' => 'min:16|max:16',
+            'cvv' => 'min:3|max:3',
+            'expDate' => 'max:5',
         ];
         $validator = Validator::make($credentials, $rules);
         if($validator->fails()) {
@@ -40,6 +46,9 @@ class AuthController extends Controller
           "phone" => $request->phone,
           "gender" => $request->gender,
           "city" => $request->city,
+          "ccNumber" => $request->ccNumber,
+          "cvv" => $request->cvv,
+          "expDate" => $request->expDate,
         ];
         $user = $this->user->create($user);
         $verification_code = str_random(30); //Generate verification code
@@ -51,8 +60,7 @@ class AuthController extends Controller
                 $mail->to($email, $name);
                 $mail->subject($subject);
             });
-        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up!
-        Please check your email to complete your registration with Hotel Mayor.']);
+        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
    }
 
     /**
@@ -164,8 +172,94 @@ class AuthController extends Controller
         ]);
     }
 
-    public function changePassword()
+    public function editProfile(Request $request)
     {
+      try
+      {
+        $user = auth()->user();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->password);
+        $user->phone = $request->input('phone');
+        $user->gender = $request->input('gender');
+        $user->city = $request->input('city');
+        $user->ccNumber = $request->input('ccNumber');
+        $user->cvv = $request->input('cvv');
+        $user->expDate = $request->input('expDate');
 
+        $user->save();
+        return response()->json(['success'=>true, 'message'=> 'Changes has been saved']);
+      }
+      catch(Exception $ex)
+      {
+        return response()->json(['success'=>false, 'message'=> $ex],400);
+      }
+    }
+
+    // Validate CC Number
+    public function validateCCNumber($ccNumber)
+    {
+      // 16 digits checked
+      if(ccNumber < 3374000000000000 || ccNumber > 4374999999999999)
+      {
+        return "Invalid Credit Card Number";
+      }
+      else
+      {
+      }
+    }
+
+    //validate cvv
+    public function validateCVV($cvv)
+    {
+      if(cvv < 000 || cvv > 999)
+      {
+        return "Invalid CVV";
+      }
+      else
+      {
+      }
+    }
+
+    public function validateExpireDate($dateExp)
+    {
+      $dateNow = date("m-y");
+      $minMonth = substr($dateNow, 0, -3);
+      $minYear = substr($dateNow, -2);
+
+      $str = "13/24";
+      $ccMonth = substr($str, 0, 2);
+      $ccYear = substr($str, -2, 2);
+      $divider = substr($str, -3, 1);
+
+      if($ccMonth < 13 && $ccMonth > 0)
+      {
+        if($ccMonth == $minMonth)
+        {
+          return "Invalid Month";
+        }
+        else
+        {
+          if($divider != "/")
+          {
+            return "Invalid Divider";
+          }
+          else
+          {
+            if($ccYear < $minYear || $ccYear > $minYear + 5)
+            {
+              return "Invalid Expiry Date";
+            }
+            else
+            {
+              return "Credit Card Validated";
+            }
+          }
+        }
+      }
+      else
+      {
+        return "Invalid Credit Card";
+      }
     }
 }

@@ -17,7 +17,7 @@ class Booking extends Migration
       {
         $table->increments('id');
         $table->dateTime('checkInDate');
-        $table->integer('lengthOfStay');
+        $table->dateTime('checkOutDate');
         $table->string('comment');
         $table->integer('rating');
 

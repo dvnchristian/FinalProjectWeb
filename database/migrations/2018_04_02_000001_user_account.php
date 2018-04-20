@@ -23,7 +23,7 @@ class UserAccount extends Migration
         $table->enum('gender', ['Male', 'Female']);
         $table->string('city');
         $table->rememberToken();
-        $table->integer('ccNumber')->nullable(); //int gk bisa di kasih max length
+        $table->bigInteger('ccNumber')->nullable();
         $table->integer('cvv')->nullable();
         $table->string('expDate', 5)->nullable();
       });

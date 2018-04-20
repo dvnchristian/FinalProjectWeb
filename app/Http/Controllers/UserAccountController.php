@@ -20,9 +20,6 @@ class UserAccountController extends Controller
     $rules = [
         'name' => 'required|max:255',
         'email' => 'required|email|max:255|unique:useraccount',
-        'ccNumber' => 'max:16',
-        'cvv' => 'max:3',
-        'expDate' => 'max:5',
     ];
     $validator = Validator::make($rules);
 
@@ -38,9 +35,9 @@ class UserAccountController extends Controller
       "phone" => $request->phone,
       "gender" => $request->gender,
       "city" => $request->city,
-      "ccNumber" => $request->ccNumber,
-      "cvv" => $request->cvv,
-      "expDate" => $request->expDate,
+      // "ccNumber" => $request->ccNumber,
+      // "cvv" => $request->cvv,
+      // "expDate" => $request->expDate,
       ];
 
     $user = $this->user->create($user);
