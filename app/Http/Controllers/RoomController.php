@@ -12,20 +12,18 @@ use Exception;
 class RoomController extends Controller
 {
   protected $room;
-  protected $bookedRoom;
 
-  public function __construct(RoomModel $room, BookedRoomModel $bookedRoom)
+  public function __construct(RoomModel $room)
   {
     $this ->room = $room;
-    $this->bookedRoom = $bookedRoom;
   }
 
   public function registerRoom(Request $request)
   {
     $room =
     [
-      "numberOfBed"  => $request->numberOfBed,
-      "numberOfBath"  => $request->numberOfBath,
+      "roomType"  => $request->numberOfBed,
+      "bedType"  => $request->numberOfBath,
       "roomPrice" => $request->roomPrice,
       "roomImage" => $request->roomImage
     ];

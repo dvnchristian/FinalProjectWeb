@@ -21,7 +21,7 @@ class BookingController extends Controller
     $booking =
     [
       "checkInDate"  => $request->checkInDate,
-      "lengthOfStay"  => $request->lengthOfStay,
+      "checkOutDate"  => $request->lengthOfStay,
       "comment"  => $request->comment,
       "rating" => $request->rating,
     ];
