@@ -20,7 +20,7 @@ class UserAccount extends Migration
         $table->string('email');
         $table->string('password');
         $table->string('phone');
-        $table->enum('gender', ['Male', 'Female']);
+        $table->enum('gender', ['Male', 'Female'])->nullable();
         $table->string('city');
         $table->rememberToken();
         $table->bigInteger('ccNumber')->nullable();

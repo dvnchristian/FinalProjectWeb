@@ -97,6 +97,9 @@ class UserAccountModelController extends Controller
             $form->text('phone');
             $form->text('gender');
             $form->text('city');
+            $form->text('ccNumber');
+            $form->text('cvv');
+            $form->text('expDate');
             $form->text('is_verified');
 
             $form->display('created_at', 'Created At');

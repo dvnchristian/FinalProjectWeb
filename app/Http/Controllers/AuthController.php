@@ -28,9 +28,6 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:useraccount',
             'password' => 'required|max:16',
             'phone' => 'min:10|max:12',
-            // 'ccNumber' => 'min:16|max:16',
-            // 'cvv' => 'min:3|max:3',
-            // 'expDate' => 'max:5',
         ];
         $validator = Validator::make($credentials, $rules);
         if($validator->fails()) {
@@ -38,9 +35,6 @@ class AuthController extends Controller
         }
         $name = $request->name;
         $email = $request->email;
-
-        // $message = AuthController::validateCCNumber($request->ccNumber);
-        // if($message !== ""){ return response()->json(['success'=> false, 'error'=> $message], 422);}
 
         $user = [
           "name"=> $name,
