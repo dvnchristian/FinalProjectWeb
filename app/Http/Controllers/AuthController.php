@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\UserAccountModel;
+use App\Model\RoomModel;
+use App\Model\BookingModel;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator, DB, Hash, Mail;
@@ -13,10 +15,14 @@ use Illuminate\Notifications\Notifiable;
 class AuthController extends Controller
 {
      protected $user;
+     protected $room;
+     protected $booking;
 
-     public function __construct(UserAccountModel $user)
+     public function __construct(UserAccountModel $user, RoomModel $room, BookingModel $booking)
      {
        $this->user = $user;
+       $this->room = $room;
+       $this->booking = $booking;
      }
 
     public function register(Request $request)
@@ -77,7 +83,7 @@ class AuthController extends Controller
     //                 'message'=> 'Account already verified..'
     //             ]);
     //         }
-    //         $user->is_verified = 1;
+    //         $user->is_verified = 0;
     //         $user->save();
     //         DB::table('user_verifications')->where('token', $verification_code);
     //         // DB::table('user_verifications')->where('token', $verification_code)->delete();
@@ -142,6 +148,36 @@ class AuthController extends Controller
         }
     }
 
+    public function userAcc() {
+      $user = auth()->user();
+
+      return $user;
+    }
+
+    public function setBooking(Request $request) {
+      try
+      {
+        $user = auth()->user();
+        $booking =
+        [
+          "checkInDate"  => $request->checkInDate,
+          "checkOutDate"  => $request->checkOutDate,
+          "comment" => "",
+          "rating" => 0,
+          "userID" => $user->id,
+          "roomID" => $request->roomID,
+        ];
+
+        $this->booking->create($booking);
+
+        return response()->json(['success' => true, 'message'=> "You have booked a room."]);
+      }
+      catch(Exception $ex)
+      {
+        return response()->json(['success'=>false, 'message'=> $ex],400);
+      }
+    }
+
     /**
      * API Recover Password
      *
@@ -167,6 +203,41 @@ class AuthController extends Controller
         return response()->json([
             'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
         ]);
+    }
+
+    public function bookingitinerary(Request $request){
+        try
+        {
+          $user = auth()->user();
+          $booking =
+          [
+            "checkInDate"  => $request->checkInDate,
+            "checkOutDate"  => $request->checkOutDate,
+            "userID" => $user->id,
+            "roomID" => $request->id,
+          ];
+
+          return $booking;
+        }
+        catch(Exception $ex)
+        {
+          return response()->json(['success'=>false, 'message'=> $ex],400);
+        }
+    }
+    public function booklist()
+    {
+      try
+      {
+        $user = auth()->user();
+        // return $user->id;
+        $booking = $this->booking->where('userID', '=', $user->id)->get();
+
+        return response()->json($booking);
+      }
+      catch(Exception $ex)
+      {
+        return response()->json(['success'=>false, 'message'=> $ex],400);
+      }
     }
 
     public function editProfile(Request $request)

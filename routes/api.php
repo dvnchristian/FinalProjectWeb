@@ -37,6 +37,11 @@ Route::post('searchRoom', "RoomController@searchRoom");
 
 Route::group(['middleware' => ['jwt.auth']], function()
 {
+    Route::post('booknow', 'AuthController@setBooking');
+    Route::get('user', 'AuthController@userAcc');
     Route::get('logout', 'AuthController@logout');
+    Route::get('booklist', 'AuthController@booklist');
     Route::put('editProfile', 'AuthController@editProfile');
+    Route::post('bookingitinerary', "AuthController@bookingitinerary");
+
 });

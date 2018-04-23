@@ -16,8 +16,9 @@ class BookingModel extends Model
     public function user()
     {
       return $this->belongsTo('app\Model\UserAccountModel');
+
+
     }
-    
     public function room()
     {
       return $this->hasMany('app\Model\RoomModel');

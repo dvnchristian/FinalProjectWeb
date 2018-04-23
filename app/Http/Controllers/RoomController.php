@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 namespace App\Http\Controllers;
 
@@ -31,7 +31,7 @@ class RoomController extends Controller
         // )
       ->whereNotBetween('booking.checkInDate', [$checkInDate, $checkOutDate])
       ->whereNotBetween('booking.checkOutDate', [$checkInDate, $checkOutDate])
-      ->select('room.roomType','room.bedType', 'room.roomPrice', 'roomImage')
+      ->select('room.id','room.roomType','room.bedType', 'room.roomPrice', 'room.roomImage')
       ->get();
 
       return response()->json($room, 200);
@@ -44,8 +44,8 @@ class RoomController extends Controller
   {
     $room =
     [
-      "roomType"  => $request->numberOfBed,
-      "bedType"  => $request->numberOfBath,
+      "roomType"  => $request->roomType,
+      "bedType"  => $request->bedType,
       "roomPrice" => $request->roomPrice,
       "roomImage" => $request->roomImage
     ];
@@ -86,8 +86,8 @@ class RoomController extends Controller
 
     $room= $this->room->find($roomID);
 
-    $room->numberOfBed = $request->numberOfBed;
-    $room->numberOfBath = $request->numberOfBath;
+    $room->roomType = $request->roomType;
+    $room->bedType = $request->bedType;
     $room->roomPrice = $request->roomPrice;
     $room->roomImage = $request->roomImage;
 

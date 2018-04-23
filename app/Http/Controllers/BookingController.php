@@ -16,12 +16,14 @@ class BookingController extends Controller
     $this->booking = $booking;
   }
 
+
+
   public function registerBooking(Request $request)
   {
     $booking =
     [
       "checkInDate"  => $request->checkInDate,
-      "checkOutDate"  => $request->lengthOfStay,
+      "checkOutDate"  => $request->checkOutDate,
       "comment"  => $request->comment,
       "rating" => $request->rating,
     ];
@@ -32,6 +34,7 @@ class BookingController extends Controller
              'msg'=>'success',
          ],200);
   }
+
 
   public function allBooking()
   {
@@ -56,28 +59,6 @@ class BookingController extends Controller
      ],200);
   }
 
-  public function searchRoom($roomID)
-  {
-    // $currStock = RoomModel::where('id', '=', $roomID)->value('qty');
-
-    if($currStock < $qty)
-    {
-      return response([
-        'msg' => 'There is no enough room, current room quantity: '. $currStock
-      ]);
-    }
-    else
-    {
-      $currStock = $currStock - $qty;
-
-      RoomModel::where('id', '=', $roomID)
-      ->update([
-        'qty'=>$currStock
-      ]);
-
-      return response(['msg' => 'Booking Successful. Stock Left: '.$currStock]);
-    }
-  }
 
   public function updateviewBooking(Request $request, $bookingID)
   {

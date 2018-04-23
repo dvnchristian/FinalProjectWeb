@@ -76,8 +76,7 @@ class BookingModelController extends Controller
         return Admin::grid(BookingModel::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->columns(
-              'checkInDate', 'checkOutDate',
+            $grid->columns('checkInDate', 'checkOutDate',
               'comment', 'rating', 'userID', 'roomID');
 
             $grid->created_at();
