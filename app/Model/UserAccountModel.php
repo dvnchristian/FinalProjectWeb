@@ -14,7 +14,9 @@ class UserAccountModel extends Authenticatable
     protected $table = "useraccount";
     protected $fillable = [
       'name', 'email', 'password','phone', 'gender',
-      'city', 'is_verified', 'ccNumber', 'cvv',
+      'city',
+       // 'is_verified', 
+       'ccNumber', 'cvv',
       'expDate'];
     protected $guarded = [];
 

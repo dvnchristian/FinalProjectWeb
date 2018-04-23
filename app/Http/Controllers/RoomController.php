@@ -18,7 +18,7 @@ class RoomController extends Controller
     $this ->room = $room;
   }
 
-  public function bookRoom(Request $request)
+  public function searchRoom(Request $request)
   {
     $checkInDate = $request->checkInDate;
     $checkOutDate = $request->checkOutDate;
