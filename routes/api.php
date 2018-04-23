@@ -22,7 +22,6 @@ Route::get('/room', "RoomController@allRoom");
 Route::get('/room/{roomID}', "RoomController@findRoom");
 Route::delete('/room/{roomID}', "RoomController@destroyRoom");
 Route::put('/room/{roomID}', "RoomController@updateviewRoom");
-Route::get('/searchRoom', "RoomController@searchRoom");
 
 Route::post('/booking', "BookingController@registerBooking");
 Route::get('/booking', "BookingController@allBooking");
@@ -34,7 +33,7 @@ Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('recover', 'AuthController@recover');
 
-Route::post('cobasini', "RoomController@cobafun");
+Route::post('bookRoom', "RoomController@cobafun");
 
 Route::group(['middleware' => ['jwt.auth']], function()
 {
