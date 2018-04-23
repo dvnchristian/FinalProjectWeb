@@ -24,8 +24,6 @@ Route::delete('/room/{roomID}', "RoomController@destroyRoom");
 Route::put('/room/{roomID}', "RoomController@updateviewRoom");
 Route::get('/searchRoom', "RoomController@searchRoom");
 
-Route::post('/booking', "BookingController@registerBooking");
-Route::get('/booking', "BookingController@allBooking");
 Route::get('/booking/{bookingID}', "BookingController@findBooking");
 Route::delete('/booking/{bookingID}', "BookingController@destroyBooking");
 Route::put('/booking/{bookingID}', "BookingController@updateviewBooking");
