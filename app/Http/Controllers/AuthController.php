@@ -19,6 +19,35 @@ class AuthController extends Controller
        $this->user = $user;
      }
 
+     public function cobacoba(Request $request){
+       $credentials = $request->only(['checkInDate', 'checkOutDate']);
+       $rules = [
+           'checkInDate' => 'date',
+           'checkOutDate' => 'date',
+       ];
+       $validator = Validator::make($credentials, $rules);
+       if($validator->fails()) {
+           return response()->json(['success'=> false, 'error'=> $validator->messages()], 422);
+       }
+       $checkInDate = $request->checkInDate; $checkOutDate = $request->checkOutDate;
+       // $specificBooking = BookingController::allBooking()
+       // ->where(
+       //   function($a) use ($checkIn,$checkOut)
+       //   {
+       //     $a->where(
+       //       [$checkIn, '>', 'checkOutDate'],
+       //       [$checkOut, '<', 'checkOutDate']
+       //     )
+       //     ->orWhere(
+       //       [$checkIn, '>=', 'checkInDate'],
+       //       [$checkOut, '<=', 'checkInDate']
+       //     );
+       //   }
+       // , '!=', '')->get('roomID');
+
+       return $checkInDate;
+     }
+
     public function register(Request $request)
     {
         $credentials = $request->only(

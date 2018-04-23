@@ -21,7 +21,7 @@ class BookingController extends Controller
     $booking =
     [
       "checkInDate"  => $request->checkInDate,
-      "checkOutDate"  => $request->lengthOfStay,
+      "checkOutDate"  => $request->checkOutDate,
       "comment"  => $request->comment,
       "rating" => $request->rating,
     ];
@@ -54,6 +54,33 @@ class BookingController extends Controller
     return response([
          'msg'=>'success',
      ],200);
+  }
+
+  // list of unbooked room
+  public function unbookedRoom(Request $request)
+  {
+    // change the line below to $request->checkIn and $request->CheckOut
+    // $checkIn = '2018-04-21'; $checkOut= '2018-04-23';
+    $credentials = $request->only('checkInDate', 'checkOutDate');
+    $rules = [
+        'checkInDate' => 'dateTime|required',
+        'checkOutDate' => 'dateTime|required',
+    ];
+
+
+    // $checkIn = $request->checkIn; $checkOut = $request->checkOut;
+    $checkInDate = $request->checkInDate; $checkOutDate = $request->checkOutDate;
+
+
+    return $checkInDate;
+
+
+    // $this->kamar = new RoomModel;
+    // $room = new RoomController($this->kamar); // roomModel::__construct cuman mesti ada 1 parameter
+    // $ruang = $room->allRoom()->whereNotIn('id', '=', $specificBooking);
+    //
+    //
+    // return $ruang;
   }
 
   public function searchRoom($roomID)

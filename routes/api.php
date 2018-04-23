@@ -29,13 +29,13 @@ Route::get('/booking', "BookingController@allBooking");
 Route::get('/booking/{bookingID}', "BookingController@findBooking");
 Route::delete('/booking/{bookingID}', "BookingController@destroyBooking");
 Route::put('/booking/{bookingID}', "BookingController@updateviewBooking");
+Route::post('/roomlist', "BookingController@unbookedRoom");
 
 Route::post('/bookedRoom', "BookedRoomController@registerBookedRoom");
 Route::get('/bookedRoom', "BookedRoomController@allbookedRoom");
 Route::get('/bookedRoom/{id}', "BookedRoomController@findBookedRoom");
 Route::delete('/bookedRoom/{id}', "BookedRoomController@destroyBookedRoom");
 Route::put('/bookedRoom/{id}', "BookedRoomController@updateviewBookedRoom");
-Route::get('/testFunction', "BookedRoomController@testfunction");
 
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');

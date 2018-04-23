@@ -9,7 +9,7 @@ class BookingModel extends Model
     public $timestamps = false;
     protected $table = "booking";
     protected $fillable = [
-      'checkInDate', 'lengthOfStay', 'comment',
+      'checkInDate', 'checkOutDate', 'comment',
       'rating','userID', 'roomID'];
     protected $guarded = [];
 
