@@ -9,14 +9,18 @@ class BookingModel extends Model
     public $timestamps = false;
     protected $table = "booking";
     protected $fillable = [
-      'checkInDate', 'checkOutDate', 'comment',
+      'checkInDate', 'lengthOfStay', 'comment',
       'rating','userID', 'roomID'];
     protected $guarded = [];
 
-    public function booking()
+    public function user()
     {
       return $this->belongsTo('app\Model\UserAccountModel');
 
+
+    }
+    public function room()
+    {
       return $this->hasMany('app\Model\RoomModel');
     }
 }
