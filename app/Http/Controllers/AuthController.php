@@ -229,10 +229,15 @@ class AuthController extends Controller
       try
       {
         $user = auth()->user();
-        // return $user->id;
-        $booking = $this->booking->where('userID', '=', $user->id)->get();
+        $data = $this->booking
+        ->join('room', 'room.id', '=', 'booking.roomID')
+        ->where('booking.userID', '=', $user->id)
+        ->select('booking.checkInDate', 'booking.checkOutDate', 'room.roomType', 'room.bedType', 'room.roomPrice',
+        'room.roomImage')
+        ->get();
 
-        return response()->json($booking);
+        // return response()->json(['success'=>true, 'data'=> $booking]);
+        return response()->json(['success'=>true, 'data'=> $data]);
       }
       catch(Exception $ex)
       {
