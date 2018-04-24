@@ -35,7 +35,9 @@ class RoomController extends Controller
       ->get();
 
       return response()->json($room, 200);
-    } catch(\Exceptions $e) {
+    }
+    catch(\Exceptions $e)
+    {
       return response([$e->getMessage()]);
     }
   }

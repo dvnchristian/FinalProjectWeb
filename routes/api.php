@@ -33,8 +33,6 @@ Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('recover', 'AuthController@recover');
 
-Route::post('searchRoom', "RoomController@searchRoom");
-
 Route::group(['middleware' => ['jwt.auth']], function()
 {
     Route::post('booknow', 'AuthController@setBooking');
@@ -43,5 +41,5 @@ Route::group(['middleware' => ['jwt.auth']], function()
     Route::get('booklist', 'AuthController@booklist');
     Route::put('editProfile', 'AuthController@editProfile');
     Route::post('bookingitinerary', "AuthController@bookingitinerary");
-
+    Route::post('searchRoom', "RoomController@searchRoom");
 });
