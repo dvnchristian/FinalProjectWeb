@@ -16,6 +16,11 @@ class BookingModel extends Model
     public function user()
     {
       return $this->belongsTo('app\Model\UserAccountModel');
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
     }
     public function room()
     {
