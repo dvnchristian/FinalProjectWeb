@@ -18,12 +18,34 @@ class RoomController extends Controller
     $this ->room = $room;
   }
 
+  public function searchRoom(Request $request)
+  {
+    $checkInDate = $request->checkInDate;
+    $checkOutDate = $request->checkOutDate;
+    try{
+      $room = $this->room
+      ->join('booking', 'room.id', '=', 'booking.roomID')
+      // ->whereDate($checkInDate, '>=', 'booking.checkInDate')
+        // [$checkInDate, '>=', 'booking.checkInDate'],
+        // [$checkOutDate, '<', 'booking.checkOutDate']
+        // )
+      ->whereNotBetween('booking.checkInDate', [$checkInDate, $checkOutDate])
+      ->whereNotBetween('booking.checkOutDate', [$checkInDate, $checkOutDate])
+      ->select('room.id','room.roomType','room.bedType', 'room.roomPrice', 'room.roomImage')
+      ->get();
+
+      return response()->json($room, 200);
+    } catch(\Exceptions $e) {
+      return response([$e->getMessage()]);
+    }
+  }
+
   public function registerRoom(Request $request)
   {
     $room =
     [
-      "roomType"  => $request->numberOfBed,
-      "bedType"  => $request->numberOfBath,
+      "roomType"  => $request->roomType,
+      "bedType"  => $request->bedType,
       "roomPrice" => $request->roomPrice,
       "roomImage" => $request->roomImage
     ];

@@ -9,14 +9,12 @@ class RoomModel extends Model
     public $timestamps = false;
     protected $table = "room";
     protected $fillable = [
-      'numberOfBed', 'numberOfBath',
+      'roomType', 'bedType',
        'roomPrice','roomImage'];
     protected $guarded = [];
 
     public function room()
     {
       return $this->belongsTo('App\Model\BookingModel');
-
-      return $this->hasMany('App\Model\BookedRoomModel');
     }
 }

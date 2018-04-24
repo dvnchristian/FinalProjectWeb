@@ -22,7 +22,6 @@ Route::get('/room', "RoomController@allRoom");
 Route::get('/room/{roomID}', "RoomController@findRoom");
 Route::delete('/room/{roomID}', "RoomController@destroyRoom");
 Route::put('/room/{roomID}', "RoomController@updateviewRoom");
-Route::get('/searchRoom', "RoomController@searchRoom");
 
 Route::post('/booking', "BookingController@registerBooking");
 Route::get('/booking', "BookingController@allBooking");
@@ -30,22 +29,20 @@ Route::get('/booking/{bookingID}', "BookingController@findBooking");
 Route::delete('/booking/{bookingID}', "BookingController@destroyBooking");
 Route::put('/booking/{bookingID}', "BookingController@updateviewBooking");
 
-Route::post('/bookedRoom', "BookedRoomController@registerBookedRoom");
-Route::get('/bookedRoom', "BookedRoomController@allbookedRoom");
-Route::get('/bookedRoom/{id}', "BookedRoomController@findBookedRoom");
-Route::delete('/bookedRoom/{id}', "BookedRoomController@destroyBookedRoom");
-Route::put('/bookedRoom/{id}', "BookedRoomController@updateviewBookedRoom");
-Route::get('/testFunction', "BookedRoomController@testfunction");
-
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('recover', 'AuthController@recover');
+
+
+Route::post('searchRoom', "RoomController@searchRoom");
+
 Route::group(['middleware' => ['jwt.auth']], function()
 {
+    Route::post('booknow', 'AuthController@setBooking');
+    Route::get('user', 'AuthController@userAcc');
     Route::get('logout', 'AuthController@logout');
+    Route::get('booklist', 'AuthController@booklist');
     Route::put('editProfile', 'AuthController@editProfile');
-});
+    Route::post('bookingitinerary', "AuthController@bookingitinerary");
 
-Route::post('/validateCCNumber', 'UserAccountController@validateCCNumber');
-Route::post('/validateExpireDate', 'UserAccountController@validateExpireDate');
-Route::post('/validateCVV', 'UserAccountController@validateCVV');
+});
