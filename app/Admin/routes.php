@@ -13,5 +13,4 @@ Route::group([
   $router->get('/', 'HomeController@index');
   $router->resource('/room', RoomModelController::class);
   $router->resource('/user', UserAccountModelController::class);
-  $router->resource('/booking', BookingModelController::class);
 });

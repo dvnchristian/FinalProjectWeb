@@ -76,8 +76,9 @@ class BookingModelController extends Controller
         return Admin::grid(BookingModel::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->columns('checkInDate', 'checkOutDate',
-              'comment', 'rating', 'userID', 'roomID');
+            $grid->columns(
+              'noOfPeople','checkInDate', 'checkOutDate',
+              'comment', 'rating', 'noOfRooms', 'userID', 'roomID');
 
             $grid->created_at();
             $grid->updated_at();
@@ -94,10 +95,12 @@ class BookingModelController extends Controller
         return Admin::form(BookingModel::class, function (Form $form) {
 
           $form->display('id', 'ID');
+          $form->text('noOfPeople');
           $form->date('checkInDate');
           $form->date('checkOutDate');
           $form->text('comment');
           $form->text('rating');
+          $form->text('noOfRooms');
           $form->select('userID')->options(UserAccountModel::all()->pluck('name', 'id'));
           $form->select('roomID')->options(RoomModel::all()->pluck('id', 'id'));
 

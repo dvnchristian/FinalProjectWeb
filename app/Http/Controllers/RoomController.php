@@ -1,4 +1,4 @@
-  <?php
+<?php
 
 namespace App\Http\Controllers;
 
@@ -35,9 +35,7 @@ class RoomController extends Controller
       ->get();
 
       return response()->json($room, 200);
-    }
-    catch(\Exceptions $e)
-    {
+    } catch(\Exceptions $e) {
       return response([$e->getMessage()]);
     }
   }
@@ -88,8 +86,8 @@ class RoomController extends Controller
 
     $room= $this->room->find($roomID);
 
-    $room->roomType = $request->roomType;
-    $room->bedType = $request->bedType;
+    $room->numberOfBed = $request->numberOfBed;
+    $room->numberOfBath = $request->numberOfBath;
     $room->roomPrice = $request->roomPrice;
     $room->roomImage = $request->roomImage;
 

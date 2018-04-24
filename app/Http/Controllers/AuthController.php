@@ -63,7 +63,7 @@ class AuthController extends Controller
                 $mail->to($email, $name);
                 $mail->subject($subject);
             });
-        return response()->json(['success'=> true, 'message'=> 'Sign Up Successful']);
+        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
    }
 
     // /**
@@ -83,7 +83,7 @@ class AuthController extends Controller
     //                 'message'=> 'Account already verified..'
     //             ]);
     //         }
-    //         $user->is_verified = 0;
+    //         $user->is_verified = 1;
     //         $user->save();
     //         DB::table('user_verifications')->where('token', $verification_code);
     //         // DB::table('user_verifications')->where('token', $verification_code)->delete();

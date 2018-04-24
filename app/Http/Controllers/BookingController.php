@@ -16,6 +16,8 @@ class BookingController extends Controller
     $this->booking = $booking;
   }
 
+
+
   public function registerBooking(Request $request)
   {
     $booking =
