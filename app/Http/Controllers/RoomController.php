@@ -31,8 +31,8 @@ class RoomController extends Controller
         // [$checkInDate, '>=', 'booking.checkInDate'],
         // [$checkOutDate, '<', 'booking.checkOutDate']
         // )
-      ->whereNotBetween('booking.checkInDate', [$checkInDate, $checkOutDate])
-      ->whereNotBetween('booking.checkOutDate', [$checkInDate, $checkOutDate])
+      ->whereBetween('booking.checkInDate', [$checkInDate, $checkOutDate])
+      ->whereBetween('booking.checkOutDate', [$checkInDate, $checkOutDate])
       ->select('roomID')
       ->get();
 
