@@ -14,14 +14,14 @@ class RoomController extends Controller
   protected $room;
   protected $booking;
 
-  public function __construct(RoomModel $room, BookingModel $booking)
+  public function __construct(RoomModel $room)
   {
     $this ->room = $room;
-    $this ->booking = $booking;
   }
 
   public function searchRoom(Request $request)
   {
+    $this->booking = new BookingModel();
     $checkInDate = $request->checkInDate;
     $checkOutDate = $request->checkOutDate;
     try{
