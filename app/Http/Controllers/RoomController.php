@@ -12,10 +12,12 @@ use Exception;
 class RoomController extends Controller
 {
   protected $room;
+  protected $booking;
 
   public function __construct(RoomModel $room)
   {
     $this ->room = $room;
+    $this ->booking = $booking;
   }
 
   public function searchRoom(Request $request)
@@ -23,19 +25,21 @@ class RoomController extends Controller
     $checkInDate = $request->checkInDate;
     $checkOutDate = $request->checkOutDate;
     try{
-      $room = $this->room
-      ->join('booking', 'room.id', '=', 'booking.roomID')
+      $room = $this->booking
+      ->join('room', 'room.id', '=', 'booking.roomID')
       // ->whereDate($checkInDate, '>=', 'booking.checkInDate')
         // [$checkInDate, '>=', 'booking.checkInDate'],
         // [$checkOutDate, '<', 'booking.checkOutDate']
         // )
       ->whereNotBetween('booking.checkInDate', [$checkInDate, $checkOutDate])
       ->whereNotBetween('booking.checkOutDate', [$checkInDate, $checkOutDate])
-      ->select('room.id','room.roomType','room.bedType', 'room.roomPrice', 'room.roomImage')
+      ->select('roomID')
       ->get();
 
-      return response()->json($room, 200);
-    } catch(\Exceptions $e) {
+      $displayroom = $this->room->whereNotIn('id', $room)->get();
+      return response()->json($displayroom, 200);
+    }
+    catch(\Exceptions $e) {
       return response([$e->getMessage()]);
     }
   }

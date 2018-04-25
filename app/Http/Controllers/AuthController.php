@@ -66,35 +66,6 @@ class AuthController extends Controller
         return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
    }
 
-    // /**
-    //  * API Verify User
-    //  *
-    //  * @param Request $request
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // public function verifyUser($verification_code)
-    // {
-    //     $check = DB::table('user_verifications')->where('token', $verification_code)->first();
-    //     if(!is_null($check)){
-    //         $user = UserAccountModel::find($check->user_id);
-    //         if($user->is_verified == 1){
-    //             return response()->json([
-    //                 'success'=> true,
-    //                 'message'=> 'Account already verified..'
-    //             ]);
-    //         }
-    //         $user->is_verified = 1;
-    //         $user->save();
-    //         DB::table('user_verifications')->where('token', $verification_code);
-    //         // DB::table('user_verifications')->where('token', $verification_code)->delete();
-    //         return response()->json([
-    //             'success'=> true,
-    //             'message'=> 'You have successfully verified your email address.'
-    //         ]);
-    //     }
-    //     return response()->json(['success'=> false, 'error'=> "Verification code is invalid."]);
-    // }
-
     /**
      * API Login, on success return JWT Auth token
      *
