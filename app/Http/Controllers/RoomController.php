@@ -14,7 +14,7 @@ class RoomController extends Controller
   protected $room;
   protected $booking;
 
-  public function __construct(RoomModel $room)
+  public function __construct(RoomModel $room, BookingModel $booking)
   {
     $this ->room = $room;
     $this ->booking = $booking;
@@ -36,6 +36,7 @@ class RoomController extends Controller
       ->select('roomID')
       ->get();
 
+      // return $room;
       $displayroom = $this->room->whereNotIn('id', $room)->get();
       return response()->json($displayroom, 200);
     }
